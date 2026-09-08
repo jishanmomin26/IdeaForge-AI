@@ -127,28 +127,33 @@ Do not add additional pages unless explicitly requested.
 
 Theme:
 
-Premium dark AI/SaaS interface.
+Clean, professional, light-mode web application design similar to a modern educational/school website.
 
 Background:
 
-#0A0A0A
+White / very light gray (#F8FAFC / #FFFFFF)
 
-Primary gradient:
+Primary brand color:
 
-Orange → Red → Golden Yellow
+Professional Blue (#2563EB)
 
 Visual characteristics:
 
-- Glassmorphism
-- Soft warm glows
-- Rounded cards
-- Premium typography
-- Clean spacing
-- Smooth micro-interactions
-- Responsive layouts
-- Modern AI aesthetic
-
-Do not introduce blue/purple as the primary visual identity.
+- Primary buttons: Blue with white text
+- Main text: Dark gray / near-black (#0F172A)
+- Secondary text: Medium gray (#64748B)
+- Cards: White with subtle borders (#E2E8F0)
+- Shadows: Very subtle (shadow-sm)
+- Clean and spacious layout
+- Simple professional navigation
+- Minimal animations
+- No dark-mode-first design
+- No neon colors
+- No glowing effects
+- No excessive gradients
+- No excessive glassmorphism
+- No futuristic AI dashboard aesthetic
+- Approachable, trustworthy, student-project appropriate
 
 ---
 
