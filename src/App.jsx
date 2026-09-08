@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Home } from './pages/Home';
 import { Generate } from './pages/Generate';
+import { Result } from './pages/Result';
 
 function App() {
   const [pathname, setPathname] = useState(
@@ -18,6 +19,10 @@ function App() {
 
   if (pathname === '/generate') {
     return <Generate />;
+  }
+
+  if (pathname === '/result') {
+    return <Result />;
   }
 
   return <Home />;
