@@ -25,13 +25,13 @@ export function Home() {
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 leading-tight mb-6">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-900 leading-tight mb-4 sm:mb-6">
               Turn Your Interests and Skills into{' '}
               <span className="text-blue-600">Actionable Startup Ideas</span>
             </h1>
 
             {/* Supporting Description */}
-            <p className="text-base sm:text-lg text-slate-600 leading-relaxed mb-8 max-w-2xl">
+            <p className="text-sm sm:text-base md:text-lg text-slate-600 leading-relaxed mb-6 sm:mb-8 max-w-2xl">
               IdeaForge AI helps aspiring entrepreneurs, students, and creators transform their passions, technical skills, budget, and goals into structured, practical startup concepts using Generative AI.
             </p>
 
@@ -53,43 +53,45 @@ export function Home() {
             </div>
 
             {/* Platform Metrics / Trust Highlights */}
-            <div className="mt-12 pt-8 border-t border-slate-200 grid grid-cols-2 sm:grid-cols-3 gap-6 w-full text-slate-600 text-sm">
+            <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-slate-200 grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6 w-full text-slate-600 text-sm">
               <div className="flex flex-col items-center">
-                <span className="font-bold text-xl text-slate-900">100% Free</span>
+                <span className="font-bold text-lg sm:text-xl text-slate-900">100% Free</span>
                 <span className="text-xs text-slate-500 mt-0.5">Academic Mini Project</span>
               </div>
               <div className="flex flex-col items-center">
-                <span className="font-bold text-xl text-slate-900">Structured</span>
+                <span className="font-bold text-lg sm:text-xl text-slate-900">Structured</span>
                 <span className="text-xs text-slate-500 mt-0.5">Business & Revenue Plans</span>
               </div>
               <div className="col-span-2 sm:col-span-1 flex flex-col items-center">
-                <span className="font-bold text-xl text-slate-900">Personalized</span>
+                <span className="font-bold text-lg sm:text-xl text-slate-900">Personalized</span>
                 <span className="text-xs text-slate-500 mt-0.5">Tailored to Your Budget</span>
               </div>
             </div>
           </div>
 
           {/* Interactive Preview Mockup Card */}
-          <div className="mt-12 max-w-4xl mx-auto">
+          <div className="mt-8 sm:mt-12 max-w-4xl mx-auto">
             <Card className="border-slate-200 shadow-sm bg-white">
-              <div className="bg-slate-50 border-b border-slate-200 px-6 py-3.5 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-slate-300" />
-                  <div className="w-3 h-3 rounded-full bg-slate-300" />
-                  <div className="w-3 h-3 rounded-full bg-slate-300" />
-                  <span className="ml-2 text-xs font-medium text-slate-500">
+              <div className="bg-slate-50 border-b border-slate-200 px-4 sm:px-6 py-3.5 flex items-center justify-between gap-2">
+                <div className="flex items-center gap-2 min-w-0">
+                  <div className="flex items-center gap-1.5 shrink-0">
+                    <div className="w-2.5 sm:w-3 h-2.5 sm:h-3 rounded-full bg-slate-300" />
+                    <div className="w-2.5 sm:w-3 h-2.5 sm:h-3 rounded-full bg-slate-300" />
+                    <div className="w-2.5 sm:w-3 h-2.5 sm:h-3 rounded-full bg-slate-300" />
+                  </div>
+                  <span className="ml-1 sm:ml-2 text-xs font-medium text-slate-500 truncate">
                     Sample Output Preview • Structured Idea Format
                   </span>
                 </div>
-                <Badge variant="primary" size="sm">
+                <Badge variant="primary" size="sm" className="shrink-0">
                   EdTech / AI
                 </Badge>
               </div>
 
-              <CardContent className="p-6 sm:p-8 space-y-6">
+              <CardContent className="p-4 sm:p-6 md:p-8 space-y-6">
                 <div>
                   <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                    <h3 className="text-xl font-bold text-slate-900">
+                    <h3 className="text-lg sm:text-xl font-bold text-slate-900">
                       SkillBridge AI
                     </h3>
                     <span className="text-xs font-medium px-2.5 py-1 rounded bg-slate-100 text-slate-700">
@@ -104,7 +106,7 @@ export function Home() {
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-slate-100 text-xs">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-4 border-t border-slate-100 text-xs">
                   <div className="bg-slate-50 p-3.5 rounded-lg border border-slate-100">
                     <span className="font-semibold text-slate-800 block mb-1">Target Market</span>
                     <p className="text-slate-600">Final-year college undergraduates and entry-level bootcamp graduates.</p>
@@ -249,15 +251,15 @@ export function Home() {
       {/* 4. Bottom CTA Section */}
       <section className="py-8 sm:py-12">
         <Container size="lg">
-          <div className="bg-blue-50 border border-blue-100 rounded-2xl p-8 sm:p-12 text-center max-w-4xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-3">
+          <div className="bg-blue-50 border border-blue-100 rounded-2xl p-6 sm:p-12 text-center max-w-4xl mx-auto">
+            <h2 className="text-xl sm:text-3xl font-bold text-slate-900 mb-2 sm:mb-3">
               Ready to Explore Your Next Startup Concept?
             </h2>
             <p className="text-slate-600 text-sm sm:text-base max-w-xl mx-auto mb-6">
               Start by entering your skills and interests. Generate a customized startup blueprint in seconds.
             </p>
-            <Link to="/generate">
-              <Button variant="primary" size="lg">
+            <Link to="/generate" className="w-full sm:w-auto inline-block">
+              <Button variant="primary" size="lg" className="w-full sm:w-auto">
                 Generate Your First Idea
               </Button>
             </Link>

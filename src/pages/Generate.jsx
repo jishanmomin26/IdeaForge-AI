@@ -206,7 +206,7 @@ export function Generate() {
               </CardDescription>
             </CardHeader>
 
-            <CardContent className="p-6 sm:p-8">
+            <CardContent className="p-4 sm:p-6 md:p-8">
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* 1. Startup Interests */}
                 <FormGroup
@@ -335,7 +335,7 @@ export function Generate() {
 
                 {/* Form Action Controls */}
                 <div className="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
-                  <div className="flex items-center gap-3 w-full sm:w-auto">
+                  <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
                     <Button
                       type="submit"
                       variant="primary"
@@ -389,7 +389,7 @@ export function Generate() {
           </Card>
 
           {/* Helpful Tips Card */}
-          <div className="mt-8 bg-blue-50/60 border border-blue-100 rounded-xl p-6 text-slate-700 text-sm">
+          <div className="mt-8 bg-blue-50/60 border border-blue-100 rounded-xl p-4 sm:p-6 text-slate-700 text-sm">
             <h3 className="font-semibold text-slate-900 mb-2 flex items-center gap-2">
               <svg className="w-4 h-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />

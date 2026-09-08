@@ -20,7 +20,7 @@ export function Card({ children, className = '', ...props }) {
 export function CardHeader({ children, className = '', ...props }) {
   return (
     <div
-      className={`p-6 border-b border-slate-100 ${className}`.trim()}
+      className={`p-4 sm:p-6 border-b border-slate-100 ${className}`.trim()}
       {...props}
     >
       {children}
@@ -57,7 +57,7 @@ export function CardDescription({ children, className = '', ...props }) {
 
 export function CardContent({ children, className = '', ...props }) {
   return (
-    <div className={`p-6 ${className}`.trim()} {...props}>
+    <div className={`p-4 sm:p-6 ${className}`.trim()} {...props}>
       {children}
     </div>
   );
@@ -66,7 +66,7 @@ export function CardContent({ children, className = '', ...props }) {
 export function CardFooter({ children, className = '', ...props }) {
   return (
     <div
-      className={`p-6 bg-slate-50/50 border-t border-slate-100 flex items-center ${className}`.trim()}
+      className={`p-4 sm:p-6 bg-slate-50/50 border-t border-slate-100 flex items-center ${className}`.trim()}
       {...props}
     >
       {children}

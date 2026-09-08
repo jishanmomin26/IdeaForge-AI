@@ -63,13 +63,13 @@ export function ErrorMessage({
         </div>
 
         {onRetry && (
-          <div className="shrink-0 pl-11 sm:pl-0">
+          <div className="shrink-0 w-full sm:w-auto pt-2 sm:pt-0">
             <Button
               type="button"
               variant="secondary"
               size="sm"
               onClick={onRetry}
-              className="border-red-200 bg-white hover:bg-red-50 text-red-900 font-medium shadow-none"
+              className="border-red-200 bg-white hover:bg-red-50 text-red-900 font-medium shadow-none w-full sm:w-auto min-h-[40px] sm:min-h-[34px] flex items-center justify-center"
             >
               <svg
                 className="w-3.5 h-3.5 mr-1.5 text-red-700"

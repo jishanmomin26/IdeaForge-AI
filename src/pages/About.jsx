@@ -67,26 +67,26 @@ export function About() {
                 College Mini Project • Generative AI
               </Badge>
             </div>
-            <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 mb-4">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-900 mb-3 sm:mb-4">
               About <span className="text-blue-600">IdeaForge AI</span>
             </h1>
-            <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
+            <p className="text-sm sm:text-base md:text-lg text-slate-600 leading-relaxed">
               An intelligent startup ideation platform that empowers students, researchers, and first-time entrepreneurs to convert raw passions and skills into structured, defensible venture concepts.
             </p>
           </div>
 
-          <div className="space-y-12">
+          <div className="space-y-8 sm:space-y-12">
             {/* 1. Project Mission & Objective */}
             <Card className="border-slate-200 shadow-sm bg-white">
-              <CardHeader className="bg-slate-50/70 border-b border-slate-100">
-                <CardTitle as="h2" className="text-xl font-semibold text-slate-900">
+              <CardHeader className="bg-slate-50/70 border-b border-slate-100 p-4 sm:p-6">
+                <CardTitle as="h2" className="text-lg sm:text-xl font-semibold text-slate-900">
                   Project Mission & Problem Solved
                 </CardTitle>
-                <CardDescription>
+                <CardDescription className="text-xs sm:text-sm">
                   Bridging the gap between initial inspiration and structured execution
                 </CardDescription>
               </CardHeader>
-              <CardContent className="p-6 sm:p-8 space-y-4 text-slate-700 text-sm sm:text-base leading-relaxed">
+              <CardContent className="p-4 sm:p-6 md:p-8 space-y-4 text-slate-700 text-sm sm:text-base leading-relaxed">
                 <p>
                   Aspiring entrepreneurs and students frequently experience brainstorming paralysis: they possess technical abilities and industry interests but struggle to synthesize them into viable business concepts with clear value propositions, market validation, and realistic monetization strategies.
                 </p>
@@ -213,13 +213,13 @@ export function About() {
                   Academic Project Details
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-6 sm:p-8">
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 text-sm">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-sm">
                   <div>
                     <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block mb-1">
                       Project Title
                     </span>
-                    <span className="font-medium text-slate-900 leading-snug block">
+                    <span className="font-medium text-slate-900 leading-snug block break-words">
                       IdeaForge AI: An AI-Powered Startup Idea Generation System
                     </span>
                   </div>
@@ -252,15 +252,15 @@ export function About() {
             </Card>
 
             {/* 5. Bottom CTA Card */}
-            <div className="bg-blue-50 border border-blue-100 rounded-2xl p-8 sm:p-12 text-center max-w-3xl mx-auto">
-              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-3">
+            <div className="bg-blue-50 border border-blue-100 rounded-2xl p-6 sm:p-12 text-center max-w-3xl mx-auto">
+              <h2 className="text-xl sm:text-3xl font-bold text-slate-900 mb-2 sm:mb-3">
                 Experience IdeaForge AI Today
               </h2>
               <p className="text-slate-600 text-sm sm:text-base max-w-xl mx-auto mb-6">
                 Ready to transform your technical skills and domain interests into a tangible startup proposal?
               </p>
-              <Link to="/generate">
-                <Button variant="primary" size="lg">
+              <Link to="/generate" className="w-full sm:w-auto inline-block">
+                <Button variant="primary" size="lg" className="w-full sm:w-auto">
                   Launch Idea Generator
                 </Button>
               </Link>

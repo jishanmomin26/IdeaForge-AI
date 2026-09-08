@@ -64,9 +64,9 @@ export function Result({ idea: propIdea }) {
       <div className="py-6 sm:py-12">
         <Container size="lg">
           {/* Top Action / Status Bar */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 pb-6 border-b border-slate-200">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 sm:mb-8 pb-5 sm:pb-6 border-b border-slate-200">
             <div>
-              <div className="flex items-center gap-2 mb-1.5">
+              <div className="flex items-center gap-2 mb-1.5 flex-wrap">
                 <Badge variant="primary" size="md">
                   AI-Generated Startup Blueprint
                 </Badge>
@@ -80,12 +80,12 @@ export function Result({ idea: propIdea }) {
             </div>
 
             {/* Quick Action Buttons */}
-            <div className="flex items-center gap-2.5">
+            <div className="flex items-center gap-2.5 w-full sm:w-auto">
               <Button
                 variant={copied ? 'outline' : 'secondary'}
                 size="sm"
                 onClick={handleCopy}
-                className="flex items-center gap-1.5"
+                className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 min-h-[40px] sm:min-h-[34px]"
                 title="Copy structured concept to clipboard"
               >
                 {copied ? (
@@ -104,8 +104,8 @@ export function Result({ idea: propIdea }) {
                   </>
                 )}
               </Button>
-              <Link to="/generate">
-                <Button variant="primary" size="sm" className="flex items-center gap-1.5">
+              <Link to="/generate" className="flex-1 sm:flex-none">
+                <Button variant="primary" size="sm" className="w-full sm:w-auto flex items-center justify-center gap-1.5 min-h-[40px] sm:min-h-[34px]">
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                   </svg>
@@ -115,27 +115,27 @@ export function Result({ idea: propIdea }) {
             </div>
           </div>
 
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8">
             {/* 1. Header Card: Startup Name & High-Level Pitch */}
             <Card className="border-slate-200 shadow-sm bg-white">
-              <CardContent className="p-6 sm:p-8">
+              <CardContent className="p-4 sm:p-6 md:p-8">
                 <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
-                  <div className="flex-1">
+                  <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-3 mb-2">
-                      <div className="w-10 h-10 rounded-xl bg-blue-600 text-white font-bold flex items-center justify-center text-lg shadow-sm">
+                      <div className="w-10 h-10 rounded-xl bg-blue-600 text-white font-bold flex items-center justify-center text-lg shadow-sm shrink-0">
                         {(startup.startupName || startup.name || 'S').charAt(0).toUpperCase()}
                       </div>
-                      <h1 className="text-2xl sm:text-4xl font-bold tracking-tight text-slate-900">
+                      <h1 className="text-xl sm:text-3xl md:text-4xl font-bold tracking-tight text-slate-900 break-words">
                         {startup.startupName || startup.name || 'Generated Startup Concept'}
                       </h1>
                     </div>
                     {startup.tagline && (
-                      <p className="text-base sm:text-lg font-medium text-blue-600 mt-2">
+                      <p className="text-base sm:text-lg font-medium text-blue-600 mt-2 break-words">
                         &quot;{startup.tagline}&quot;
                       </p>
                     )}
                     {(startup.description || startup.solution) && (
-                      <p className="text-sm sm:text-base text-slate-600 leading-relaxed mt-4">
+                      <p className="text-sm sm:text-base text-slate-600 leading-relaxed mt-4 break-words">
                         {startup.description || startup.solution}
                       </p>
                     )}
@@ -159,8 +159,8 @@ export function Result({ idea: propIdea }) {
                     <CardDescription>The core friction and market pain point</CardDescription>
                   </div>
                 </CardHeader>
-                <CardContent className="p-6">
-                  <p className="text-sm text-slate-700 leading-relaxed">
+                <CardContent className="p-4 sm:p-6">
+                  <p className="text-sm text-slate-700 leading-relaxed break-words">
                     {startup.problem}
                   </p>
                 </CardContent>
@@ -179,8 +179,8 @@ export function Result({ idea: propIdea }) {
                     <CardDescription>How this concept resolves the friction</CardDescription>
                   </div>
                 </CardHeader>
-                <CardContent className="p-6">
-                  <p className="text-sm text-slate-700 leading-relaxed">
+                <CardContent className="p-4 sm:p-6">
+                  <p className="text-sm text-slate-700 leading-relaxed break-words">
                     {startup.solution}
                   </p>
                 </CardContent>
@@ -197,8 +197,8 @@ export function Result({ idea: propIdea }) {
                   </CardTitle>
                   <CardDescription>Primary user persona</CardDescription>
                 </CardHeader>
-                <CardContent className="p-6">
-                  <p className="text-sm text-slate-700 leading-relaxed">
+                <CardContent className="p-4 sm:p-6">
+                  <p className="text-sm text-slate-700 leading-relaxed break-words">
                     {startup.targetAudience}
                   </p>
                 </CardContent>
@@ -212,8 +212,8 @@ export function Result({ idea: propIdea }) {
                   </CardTitle>
                   <CardDescription>Operational mechanics</CardDescription>
                 </CardHeader>
-                <CardContent className="p-6">
-                  <p className="text-sm text-slate-700 leading-relaxed">
+                <CardContent className="p-4 sm:p-6">
+                  <p className="text-sm text-slate-700 leading-relaxed break-words">
                     {startup.businessModel}
                   </p>
                 </CardContent>
@@ -227,8 +227,8 @@ export function Result({ idea: propIdea }) {
                   </CardTitle>
                   <CardDescription>Monetization strategy</CardDescription>
                 </CardHeader>
-                <CardContent className="p-6">
-                  <p className="text-sm text-slate-700 leading-relaxed">
+                <CardContent className="p-4 sm:p-6">
+                  <p className="text-sm text-slate-700 leading-relaxed break-words">
                     {startup.revenueModel}
                   </p>
                 </CardContent>
@@ -237,33 +237,33 @@ export function Result({ idea: propIdea }) {
 
             {/* 4. MVP Roadmap & Key Features */}
             <Card className="border-slate-200 shadow-sm bg-white">
-              <CardHeader className="border-b border-slate-100">
-                <div className="flex items-center justify-between">
+              <CardHeader className="border-b border-slate-100 p-4 sm:p-6">
+                <div className="flex items-center justify-between gap-2 flex-wrap">
                   <div>
-                    <CardTitle as="h2" className="text-lg font-semibold text-slate-900">
+                    <CardTitle as="h2" className="text-base sm:text-lg font-semibold text-slate-900">
                       Recommended MVP Features
                     </CardTitle>
                     <CardDescription>
                       Core functionality required for your prototype exhibition or initial launch
                     </CardDescription>
                   </div>
-                  <Badge variant="primary" size="sm">
+                  <Badge variant="primary" size="sm" className="shrink-0">
                     {(startup.mvpFeatures || []).length} Core Modules
                   </Badge>
                 </div>
               </CardHeader>
-              <CardContent className="p-6 sm:p-8">
+              <CardContent className="p-4 sm:p-6 md:p-8">
                 {startup.mvpFeatures && startup.mvpFeatures.length > 0 ? (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                     {startup.mvpFeatures.map((feature, index) => (
                       <div
                         key={index}
-                        className="p-4 rounded-xl bg-slate-50 border border-slate-200/80 flex items-start gap-3"
+                        className="p-3.5 sm:p-4 rounded-xl bg-slate-50 border border-slate-200/80 flex items-start gap-3"
                       >
                         <div className="w-6 h-6 rounded-full bg-blue-600 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
                           {index + 1}
                         </div>
-                        <p className="text-sm text-slate-800 font-medium leading-relaxed">
+                        <p className="text-sm text-slate-800 font-medium leading-relaxed break-words">
                           {feature}
                         </p>
                       </div>
@@ -278,9 +278,9 @@ export function Result({ idea: propIdea }) {
             </Card>
 
             {/* 5. Bottom Navigation & Action Bar */}
-            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <div className="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
               <div>
-                <h3 className="font-semibold text-slate-900">
+                <h3 className="font-semibold text-slate-900 text-sm sm:text-base">
                   Want to refine this concept or try different constraints?
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
@@ -288,14 +288,14 @@ export function Result({ idea: propIdea }) {
                 </p>
               </div>
 
-              <div className="flex items-center gap-3 w-full sm:w-auto">
+              <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
                 <Link to="/generate" className="w-full sm:w-auto">
-                  <Button variant="primary" size="md" className="w-full sm:w-auto">
+                  <Button variant="primary" size="md" className="w-full sm:w-auto min-h-[44px]">
                     Generate New Concept
                   </Button>
                 </Link>
                 <Link to="/" className="w-full sm:w-auto">
-                  <Button variant="secondary" size="md" className="w-full sm:w-auto">
+                  <Button variant="secondary" size="md" className="w-full sm:w-auto min-h-[44px]">
                     Return to Home
                   </Button>
                 </Link>
