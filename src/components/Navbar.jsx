@@ -19,26 +19,26 @@ export function Navbar() {
   ];
 
   return (
-    <header className="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+    <header className="bg-white/95 backdrop-blur-xs border-b border-slate-200/80 sticky top-0 z-50 shadow-xs">
       <Container size="lg">
         <div className="flex items-center justify-between h-16">
           {/* Logo / Brand */}
           <Link
             to="/"
-            className="flex items-center gap-2.5 text-slate-900 hover:text-blue-600 transition-colors"
+            className="group flex items-center gap-2.5 text-slate-900 transition-colors"
           >
-            <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold text-sm shadow-sm">
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-700 flex items-center justify-center text-white font-black text-sm shadow-xs shadow-blue-500/20 group-hover:shadow-md group-hover:shadow-blue-500/25 transition-all">
               IF
             </div>
             <div className="flex flex-col">
-              <span className="font-bold text-lg tracking-tight leading-tight">
-                IdeaForge <span className="text-blue-600">AI</span>
+              <span className="font-bold text-lg tracking-tight leading-tight group-hover:text-blue-600 transition-colors">
+                IdeaForge <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 font-extrabold">AI</span>
               </span>
             </div>
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-1" aria-label="Main Navigation">
+          <nav className="hidden md:flex items-center gap-1.5" aria-label="Main Navigation">
             {navItems.map((item) => (
               <NavLink
                 key={item.href}

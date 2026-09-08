@@ -25,8 +25,8 @@ export function NavLink({
       className={({ isActive }) =>
         `${baseStyles} ${
           isActive
-            ? 'text-blue-600 bg-blue-50 font-semibold'
-            : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+            ? 'text-blue-700 bg-blue-50 font-semibold border border-blue-200/60 shadow-xs'
+            : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/80 border border-transparent'
         } ${className}`.trim()
       }
       {...props}

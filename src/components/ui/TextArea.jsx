@@ -17,11 +17,11 @@ export function TextArea({
   ...props
 }) {
   const baseStyles =
-    'w-full px-3.5 py-2.5 bg-white text-slate-900 border rounded-lg text-sm transition-colors duration-150 placeholder:text-slate-400 focus:outline-none focus:ring-2 disabled:bg-slate-100 disabled:text-slate-500 disabled:cursor-not-allowed resize-y';
+    'w-full px-3.5 py-2.5 bg-white text-slate-900 border rounded-lg text-sm shadow-xs transition-all duration-150 placeholder:text-slate-400 focus:outline-none disabled:bg-slate-100 disabled:text-slate-500 disabled:cursor-not-allowed resize-y';
 
   const stateStyles = error
-    ? 'border-red-500 text-red-900 focus:border-red-500 focus:ring-red-500/20'
-    : 'border-slate-300 hover:border-slate-400 focus:border-blue-500 focus:ring-blue-500/20';
+    ? 'border-red-400 text-red-900 focus:border-red-500 focus:ring-4 focus:ring-red-500/15'
+    : 'border-slate-300 hover:border-slate-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/15';
 
   return (
     <textarea

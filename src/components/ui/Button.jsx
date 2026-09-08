@@ -28,11 +28,13 @@ export function Button({
 
   const variants = {
     primary:
-      'bg-blue-600 text-white hover:bg-blue-700 shadow-sm focus:ring-blue-500',
+      'bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800 shadow-sm shadow-blue-500/20 focus:ring-blue-500',
     secondary:
-      'bg-white text-slate-900 border border-slate-200 hover:bg-slate-50 shadow-sm focus:ring-slate-300',
+      'bg-white text-blue-700 border border-slate-300 hover:bg-blue-50/60 hover:border-blue-300 shadow-xs focus:ring-blue-500',
     outline:
       'bg-transparent text-blue-600 border border-blue-600 hover:bg-blue-50 focus:ring-blue-500',
+    purple:
+      'bg-purple-600 text-white hover:bg-purple-700 active:bg-purple-800 shadow-sm shadow-purple-500/20 focus:ring-purple-500',
     ghost:
       'bg-transparent text-slate-700 hover:bg-slate-100 hover:text-slate-900 focus:ring-slate-300',
   };
