@@ -17,3 +17,7 @@ export { Input } from './Input';
 export { Select } from './Select';
 export { TextArea } from './TextArea';
 export { FormGroup } from './FormGroup';
+
+// Feedback & Status UI Components
+export { Spinner } from './Spinner';
+export { ErrorMessage } from './ErrorMessage';

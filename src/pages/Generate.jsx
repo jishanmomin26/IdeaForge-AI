@@ -9,16 +9,89 @@ import { TextArea } from '../components/ui/TextArea';
 import { Select } from '../components/ui/Select';
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
+import { Spinner } from '../components/ui/Spinner';
+import { ErrorMessage } from '../components/ui/ErrorMessage';
 import { generateStartupIdea } from '../services';
 import { parseStartupIdea } from '../utils';
 
 /**
+ * Maps technical and network errors to clean, user-friendly messages
+ * without exposing sensitive API keys or technical trace details.
+ *
+ * @param {Error} error - The caught error
+ * @returns {{ title: string, message: string }} User-friendly error object
+ */
+function getFriendlyErrorMessage(error) {
+  const rawMsg = error?.message || '';
+
+  // 1. Missing or unconfigured API key
+  if (
+    rawMsg.includes('VITE_GEMINI_API_KEY') ||
+    rawMsg.includes('API key is not configured') ||
+    rawMsg.includes('API_KEY_INVALID') ||
+    rawMsg.includes('API key not valid')
+  ) {
+    return {
+      title: 'API Configuration Issue',
+      message:
+        'The Gemini API key is missing or invalid. Please check your application configuration in .env.local.',
+    };
+  }
+
+  // 2. Malformed or unparseable AI response
+  if (rawMsg === 'MALFORMED_RESPONSE' || rawMsg.includes('empty response')) {
+    return {
+      title: 'AI Processing Error',
+      message:
+        'Something went wrong while processing the AI response. Please try again.',
+    };
+  }
+
+  // 3. Network or connection issues
+  if (
+    rawMsg.includes('Failed to fetch') ||
+    rawMsg.includes('network') ||
+    rawMsg.includes('NetworkError') ||
+    rawMsg.includes('timeout') ||
+    rawMsg.includes('ECONNREFUSED')
+  ) {
+    return {
+      title: 'Network Connection Error',
+      message:
+        'Unable to generate your startup idea right now. Please check your connection and try again.',
+    };
+  }
+
+  // 4. Rate limit / quota exceeded
+  if (
+    rawMsg.includes('429') ||
+    rawMsg.includes('quota') ||
+    rawMsg.includes('RESOURCE_EXHAUSTED')
+  ) {
+    return {
+      title: 'Service Temporarily Busy',
+      message:
+        'The Gemini AI service is experiencing high demand. Please wait a moment and try again.',
+    };
+  }
+
+  // 5. General fallback
+  return {
+    title: 'Unable to Generate Startup Idea',
+    message:
+      'Unable to generate your startup idea right now. Please check your connection and try again.',
+  };
+}
+
+/**
  * Generate Idea Page UI for IdeaForge AI
- * Phase 18: Connected Gemini generation with response parsing:
+ * Phase 19: Loading States and Error Handling:
  * - Collects Startup Interests, Skills, Budget, Audience, Goal
- * - Invokes Gemini service layer
- * - Parses raw response into structured startup idea object
- * - Passes structured result to /result
+ * - Displays animated Spinner & status during Gemini generation
+ * - Disables all form inputs and button to prevent double-submissions
+ * - Catches errors, logs details via console.error, and renders user-friendly ErrorMessage
+ * - Provides interactive "Try Again" retry action with preserved form inputs
+ * - Parses structured idea and navigates to /result upon success
  * 
  * Follows the clean, light-mode educational design system.
  */
@@ -32,7 +105,7 @@ export function Generate() {
     goal: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [errorState, setErrorState] = useState(null);
 
   const budgetOptions = [
     { value: 'low', label: 'Zero / Minimal Budget ($0 - $100)' },
@@ -49,6 +122,7 @@ export function Generate() {
   };
 
   const handleReset = () => {
+    if (isSubmitting) return;
     setFormData({
       interests: '',
       skills: '',
@@ -56,13 +130,14 @@ export function Generate() {
       audience: '',
       goal: '',
     });
-    setErrorMessage(null);
+    setErrorState(null);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const executeGeneration = async () => {
+    if (isSubmitting) return; // Prevent double submission
+
     setIsSubmitting(true);
-    setErrorMessage(null);
+    setErrorState(null);
 
     try {
       // Call Gemini service layer to generate raw response
@@ -70,6 +145,11 @@ export function Generate() {
 
       // Phase 18: Parse raw Gemini response into consistent structured object
       const structuredIdea = parseStartupIdea(rawResponse);
+
+      // Validate response content
+      if (!structuredIdea.startupName && !structuredIdea.problem) {
+        throw new Error('MALFORMED_RESPONSE');
+      }
 
       try {
         sessionStorage.setItem('ideaforge_current_idea', JSON.stringify(structuredIdea));
@@ -79,12 +159,21 @@ export function Generate() {
 
       navigate('/result', { state: { idea: structuredIdea } });
     } catch (err) {
-      setErrorMessage(
-        err.message || 'Failed to generate startup idea. Please check your Gemini API key.'
-      );
+      // Log original error for development/debugging
+      console.error('Error generating startup idea:', err);
+      setErrorState(getFriendlyErrorMessage(err));
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const handleSubmit = (e) => {
+    if (e) e.preventDefault();
+    executeGeneration();
+  };
+
+  const handleRetry = () => {
+    executeGeneration();
   };
 
   return (
@@ -133,6 +222,7 @@ export function Generate() {
                     onChange={handleChange('interests')}
                     placeholder="e.g. Higher education tools, campus food delivery logistics, smart timetable automation..."
                     rows={3}
+                    disabled={isSubmitting}
                     required
                   />
                 </FormGroup>
@@ -151,6 +241,7 @@ export function Generate() {
                     onChange={handleChange('skills')}
                     placeholder="e.g. React, JavaScript, Python, REST APIs, UI/UX design, data analysis..."
                     rows={3}
+                    disabled={isSubmitting}
                     required
                   />
                 </FormGroup>
@@ -170,6 +261,7 @@ export function Generate() {
                       onChange={handleChange('budget')}
                       placeholder="Select budget tier"
                       options={budgetOptions}
+                      disabled={isSubmitting}
                       required
                     />
                   </FormGroup>
@@ -188,6 +280,7 @@ export function Generate() {
                       value={formData.audience}
                       onChange={handleChange('audience')}
                       placeholder="e.g. College students, freelance writers, small local cafes..."
+                      disabled={isSubmitting}
                       required
                     />
                   </FormGroup>
@@ -207,23 +300,37 @@ export function Generate() {
                     onChange={handleChange('goal')}
                     placeholder="e.g. Build a functioning MVP for a college exhibition with commercial launch potential..."
                     rows={3}
+                    disabled={isSubmitting}
                     required
                   />
                 </FormGroup>
 
-                {/* Error Banner */}
-                {errorMessage && (
-                  <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-sm">
-                    <div className="flex items-start gap-2.5">
-                      <svg className="w-5 h-5 text-red-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      <div>
-                        <p className="font-semibold text-red-900">Unable to Generate Startup Idea</p>
-                        <p className="text-xs sm:text-sm mt-0.5 text-red-700">{errorMessage}</p>
-                      </div>
+                {/* Active Generation Loading Indicator */}
+                {isSubmitting && (
+                  <div
+                    role="status"
+                    className="p-4 sm:p-5 rounded-xl bg-blue-50 border border-blue-200 text-slate-800 flex items-center gap-3.5 shadow-sm"
+                  >
+                    <Spinner size="md" color="primary" className="shrink-0" />
+                    <div>
+                      <p className="font-semibold text-sm sm:text-base text-blue-950">
+                        Generating your startup idea...
+                      </p>
+                      <p className="text-xs sm:text-sm text-slate-600 mt-0.5">
+                        IdeaForge AI is synthesizing your inputs with Gemini. This may take a few seconds.
+                      </p>
                     </div>
                   </div>
+                )}
+
+                {/* Error Banner with Retry */}
+                {errorState && !isSubmitting && (
+                  <ErrorMessage
+                    title={errorState.title}
+                    message={errorState.message}
+                    onRetry={handleRetry}
+                    retryLabel="Try Again"
+                  />
                 )}
 
                 {/* Form Action Controls */}
@@ -238,11 +345,8 @@ export function Generate() {
                     >
                       {isSubmitting ? (
                         <>
-                          <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
-                          </svg>
-                          Generating Concept...
+                          <Spinner size="sm" color="white" className="-ml-1 mr-2" />
+                          Generating your startup idea...
                         </>
                       ) : (
                         <>
@@ -268,6 +372,7 @@ export function Generate() {
                       type="button"
                       variant="secondary"
                       size="lg"
+                      disabled={isSubmitting}
                       onClick={handleReset}
                       className="w-full sm:w-auto"
                     >
