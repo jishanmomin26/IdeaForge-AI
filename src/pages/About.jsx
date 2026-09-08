@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Layout } from '../components/Layout';
 import { Container } from '../components/ui/Container';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../components/ui/Card';
@@ -258,11 +259,11 @@ export function About() {
               <p className="text-slate-600 text-sm sm:text-base max-w-xl mx-auto mb-6">
                 Ready to transform your technical skills and domain interests into a tangible startup proposal?
               </p>
-              <a href="/generate">
+              <Link to="/generate">
                 <Button variant="primary" size="lg">
                   Launch Idea Generator
                 </Button>
-              </a>
+              </Link>
             </div>
           </div>
         </Container>

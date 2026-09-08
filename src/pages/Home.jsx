@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Layout } from '../components/Layout';
 import { Container } from '../components/ui/Container';
 import { Button } from '../components/ui/Button';
@@ -36,19 +37,19 @@ export function Home() {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row items-center gap-3.5 w-full sm:w-auto">
-              <a href="/generate" className="w-full sm:w-auto">
+              <Link to="/generate" className="w-full sm:w-auto">
                 <Button variant="primary" size="lg" className="w-full sm:w-auto">
                   Start Generating Ideas
                   <svg className="w-4 h-4 ml-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>
                 </Button>
-              </a>
-              <a href="/about" className="w-full sm:w-auto">
+              </Link>
+              <Link to="/about" className="w-full sm:w-auto">
                 <Button variant="secondary" size="lg" className="w-full sm:w-auto">
                   Learn About the System
                 </Button>
-              </a>
+              </Link>
             </div>
 
             {/* Platform Metrics / Trust Highlights */}
@@ -255,11 +256,11 @@ export function Home() {
             <p className="text-slate-600 text-sm sm:text-base max-w-xl mx-auto mb-6">
               Start by entering your skills and interests. Generate a customized startup blueprint in seconds.
             </p>
-            <a href="/generate">
+            <Link to="/generate">
               <Button variant="primary" size="lg">
                 Generate Your First Idea
               </Button>
-            </a>
+            </Link>
           </div>
         </Container>
       </section>

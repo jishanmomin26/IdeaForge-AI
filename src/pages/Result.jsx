@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Layout } from '../components/Layout';
 import { Container } from '../components/ui/Container';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../components/ui/Card';
@@ -78,14 +79,14 @@ export function Result({ idea }) {
                 </svg>
                 Copy Idea
               </Button>
-              <a href="/generate">
+              <Link to="/generate">
                 <Button variant="primary" size="sm" className="flex items-center gap-1.5">
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                   </svg>
                   Generate Again
                 </Button>
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -253,16 +254,16 @@ export function Result({ idea }) {
               </div>
 
               <div className="flex items-center gap-3 w-full sm:w-auto">
-                <a href="/generate" className="w-full sm:w-auto">
+                <Link to="/generate" className="w-full sm:w-auto">
                   <Button variant="primary" size="md" className="w-full sm:w-auto">
                     Generate New Concept
                   </Button>
-                </a>
-                <a href="/" className="w-full sm:w-auto">
+                </Link>
+                <Link to="/" className="w-full sm:w-auto">
                   <Button variant="secondary" size="md" className="w-full sm:w-auto">
                     Return to Home
                   </Button>
-                </a>
+                </Link>
               </div>
             </div>
           </div>

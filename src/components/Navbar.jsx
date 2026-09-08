@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Container } from './ui/Container';
 import { Button } from './ui/Button';
 import { NavLink } from './NavLink';
@@ -6,9 +7,9 @@ import { NavLink } from './NavLink';
 /**
  * Navbar component for IdeaForge AI
  * Features clean educational branding, primary links (Home, Generate, About),
- * and responsive mobile menu support.
+ * and responsive mobile navigation powered by React Router.
  */
-export function Navbar({ currentPath = '/' }) {
+export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
@@ -22,8 +23,8 @@ export function Navbar({ currentPath = '/' }) {
       <Container size="lg">
         <div className="flex items-center justify-between h-16">
           {/* Logo / Brand */}
-          <a
-            href="/"
+          <Link
+            to="/"
             className="flex items-center gap-2.5 text-slate-900 hover:text-blue-600 transition-colors"
           >
             <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold text-sm shadow-sm">
@@ -34,15 +35,14 @@ export function Navbar({ currentPath = '/' }) {
                 IdeaForge <span className="text-blue-600">AI</span>
               </span>
             </div>
-          </a>
+          </Link>
 
           {/* Desktop Navigation Links */}
           <nav className="hidden md:flex items-center gap-1" aria-label="Main Navigation">
             {navItems.map((item) => (
               <NavLink
                 key={item.href}
-                href={item.href}
-                isActive={currentPath === item.href}
+                to={item.href}
               >
                 {item.label}
               </NavLink>
@@ -51,11 +51,11 @@ export function Navbar({ currentPath = '/' }) {
 
           {/* Desktop Action Button */}
           <div className="hidden md:flex items-center gap-3">
-            <a href="/generate">
+            <Link to="/generate">
               <Button variant="primary" size="sm">
                 Generate Idea
               </Button>
-            </a>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -99,23 +99,22 @@ export function Navbar({ currentPath = '/' }) {
             {navItems.map((item) => (
               <NavLink
                 key={item.href}
-                href={item.href}
-                isActive={currentPath === item.href}
+                to={item.href}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.label}
               </NavLink>
             ))}
             <div className="pt-2">
-              <a
-                href="/generate"
+              <Link
+                to="/generate"
                 className="w-full block"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 <Button variant="primary" size="sm" className="w-full">
                   Generate Idea
                 </Button>
-              </a>
+              </Link>
             </div>
           </div>
         )}
