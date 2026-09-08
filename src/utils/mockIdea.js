@@ -140,49 +140,41 @@ export function generateMockIdea(formData = {}) {
 export function formatIdeaForClipboard(idea) {
   if (!idea) return '';
 
-  if (idea.rawText) {
-    return `========================================
-${(idea.name || 'AI Startup Concept').toUpperCase()}
-========================================
-Tagline: "${idea.tagline || ''}"
-
-${idea.rawText}
-
-========================================
-Generated with IdeaForge AI (Gemini API)
-========================================`;
-  }
-
+  const name = idea.startupName || idea.name || 'AI Startup Concept';
+  const tagline = idea.tagline || '';
+  const problem = idea.problem || '';
+  const solution = idea.solution || '';
+  const targetAudience = idea.targetAudience || '';
+  const businessModel = idea.businessModel || '';
+  const revenueModel = idea.revenueModel || '';
   const featuresList = (idea.mvpFeatures || [])
     .map((feature, index) => `  ${index + 1}. ${feature}`)
     .join('\n');
 
   return `========================================
-${(idea.name || 'AI Startup Concept').toUpperCase()}
+${name.toUpperCase()}
 ========================================
-Tagline: "${idea.tagline || ''}"
-
-Description:
-${idea.description}
+Tagline: "${tagline}"
 
 Problem Statement:
-${idea.problem}
+${problem}
 
 Proposed Solution:
-${idea.solution}
+${solution}
 
 Target Audience:
-${idea.targetAudience}
+${targetAudience}
 
 Business Model:
-${idea.businessModel}
+${businessModel}
 
 Revenue Model:
-${idea.revenueModel}
+${revenueModel}
 
 Recommended MVP Features:
-${featuresList}
+${featuresList || '  (None specified)'}
 ========================================
-Generated with IdeaForge AI
+Generated with IdeaForge AI (Gemini API)
 ========================================`;
 }
+

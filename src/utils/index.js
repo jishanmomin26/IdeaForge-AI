@@ -3,3 +3,5 @@ export {
   generateMockIdea,
   formatIdeaForClipboard,
 } from './mockIdea';
+export { parseStartupIdea } from './responseParser';
+

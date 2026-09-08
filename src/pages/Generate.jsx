@@ -9,22 +9,17 @@ import { TextArea } from '../components/ui/TextArea';
 import { Select } from '../components/ui/Select';
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
-import {
-  generateStartupIdea,
-  extractSimpleField,
-  extractSimpleFeatures,
-} from '../services';
+import { generateStartupIdea } from '../services';
+import { parseStartupIdea } from '../utils';
 
 /**
  * Generate Idea Page UI for IdeaForge AI
- * Phase 17: Connected Gemini generation flow collecting:
- * - Startup Interest
- * - Skills
- * - Budget
- * - Target Audience
- * - Startup Goal
+ * Phase 18: Connected Gemini generation with response parsing:
+ * - Collects Startup Interests, Skills, Budget, Audience, Goal
+ * - Invokes Gemini service layer
+ * - Parses raw response into structured startup idea object
+ * - Passes structured result to /result
  * 
- * Invokes Gemini service layer and passes generated startup idea to /result.
  * Follows the clean, light-mode educational design system.
  */
 export function Generate() {
@@ -70,46 +65,19 @@ export function Generate() {
     setErrorMessage(null);
 
     try {
-      // Phase 17: Call Gemini service layer to generate startup idea
-      const generatedText = await generateStartupIdea(formData);
+      // Call Gemini service layer to generate raw response
+      const rawResponse = await generateStartupIdea(formData);
 
-      const parsedName = extractSimpleField(generatedText, 'Startup Name');
-      const parsedTagline = extractSimpleField(generatedText, 'Tagline');
-      const parsedProblem = extractSimpleField(generatedText, 'Problem');
-      const parsedSolution = extractSimpleField(generatedText, 'Solution');
-      const parsedAudience = extractSimpleField(generatedText, 'Target Audience');
-      const parsedBusinessModel = extractSimpleField(generatedText, 'Business Model');
-      const parsedRevenueModel = extractSimpleField(generatedText, 'Revenue Model');
-      const parsedMvpFeatures = extractSimpleFeatures(generatedText);
-
-      const resultIdea = {
-        rawText: generatedText,
-        name: parsedName || 'AI Startup Blueprint',
-        tagline: parsedTagline || 'Intelligent startup concept powered by Gemini AI',
-        description: parsedSolution || generatedText.slice(0, 350),
-        problem: parsedProblem || 'Core market friction defined in the generated concept blueprint.',
-        solution: parsedSolution || 'Product solution defined in the generated concept blueprint.',
-        targetAudience: parsedAudience || formData.audience || 'Target customer persona',
-        businessModel: parsedBusinessModel || 'Sustainable operational model detailed in concept.',
-        revenueModel: parsedRevenueModel || 'Monetization strategy detailed in concept.',
-        mvpFeatures:
-          parsedMvpFeatures.length > 0
-            ? parsedMvpFeatures
-            : [
-                'Core prototype workflow solving primary user pain point',
-                'Interactive user interface for audience onboarding',
-                'Backend logic and functional data processing module',
-                'Milestone analytics and progress tracking dashboard',
-              ],
-      };
+      // Phase 18: Parse raw Gemini response into consistent structured object
+      const structuredIdea = parseStartupIdea(rawResponse);
 
       try {
-        sessionStorage.setItem('ideaforge_current_idea', JSON.stringify(resultIdea));
+        sessionStorage.setItem('ideaforge_current_idea', JSON.stringify(structuredIdea));
       } catch {
         // Ignore sessionStorage errors (e.g. private browsing restrictions)
       }
 
-      navigate('/result', { state: { idea: resultIdea } });
+      navigate('/result', { state: { idea: structuredIdea } });
     } catch (err) {
       setErrorMessage(
         err.message || 'Failed to generate startup idea. Please check your Gemini API key.'
