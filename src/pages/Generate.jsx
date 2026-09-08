@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Layout } from '../components/Layout';
 import { Container } from '../components/ui/Container';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../components/ui/Card';
@@ -8,19 +9,22 @@ import { TextArea } from '../components/ui/TextArea';
 import { Select } from '../components/ui/Select';
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
+import { generateMockIdea } from '../utils';
 
 /**
  * Generate Idea Page UI for IdeaForge AI
- * Phase 10: Pure UI implementation collecting:
+ * Phase 14: Connected frontend flow collecting:
  * - Startup Interest
  * - Skills
  * - Budget
  * - Target Audience
  * - Startup Goal
  * 
+ * Generates structured mock idea data and navigates to /result.
  * Follows the clean, light-mode educational design system.
  */
 export function Generate() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     interests: '',
     skills: '',
@@ -55,7 +59,16 @@ export function Generate() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Submission logic will connect to Gemini API in Phase 12
+    // Phase 14: Generate mock startup idea from user inputs and navigate to /result
+    const mockIdea = generateMockIdea(formData);
+
+    try {
+      sessionStorage.setItem('ideaforge_current_idea', JSON.stringify(mockIdea));
+    } catch {
+      // Ignore sessionStorage errors (e.g. private browsing restrictions)
+    }
+
+    navigate('/result', { state: { idea: mockIdea } });
   };
 
   return (

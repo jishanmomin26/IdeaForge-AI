@@ -1,13 +1,15 @@
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Layout } from '../components/Layout';
 import { Container } from '../components/ui/Container';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
+import { defaultStartupIdea, formatIdeaForClipboard } from '../utils';
 
 /**
  * Result Page UI for IdeaForge AI
- * Phase 11: Pure visual presentation of a generated startup concept
+ * Phase 14: Dynamic presentation of a generated startup concept
  * Includes:
  * - Startup Name & Tagline
  * - Description
@@ -15,36 +17,47 @@ import { Badge } from '../components/ui/Badge';
  * - Target Audience
  * - Business & Revenue Model
  * - MVP Features Checklist
- * 
- * Uses realistic mock data structured ready for Phase 12/13 integration.
+ * - Dynamic data flow from /generate (state + sessionStorage)
+ * - Copy idea to clipboard with visual confirmation
+ * - Generate Again action
  */
-export function Result({ idea }) {
-  // Realistic mock concept representing the structured output received from Gemini
-  const defaultIdea = {
-    name: 'CampusCart AI',
-    tagline: 'Hyperlocal peer-to-peer campus grocery and essentials delivery for university dorms.',
-    description:
-      'A student-run logistics and delivery platform optimized for high-density campus housing. It combines micro-fulfillment with flexible peer couriers to deliver groceries, study supplies, and late-night snacks in under 20 minutes.',
-    targetAudience:
-      'University undergraduate and postgraduate students residing in on-campus dormitories and off-campus student housing complexes within a 1-mile radius.',
-    problem:
-      'Campus dining halls close early, traditional delivery apps levy exorbitant service and delivery fees on small orders ($5 delivery on a $4 snack), and students lack quick, affordable access to late-night grocery staples, print supplies, and emergency pharmaceuticals.',
-    solution:
-      'A localized peer delivery network where students traveling back from local supermarkets, dining halls, or campus centers fulfill delivery requests for nearby dorm residents, drastically reducing delivery fees to under $1.50 while providing student couriers with instant micro-earnings.',
-    businessModel:
-      'Two-sided peer marketplace connecting student shoppers with verified student peers. Order batching algorithms bundle deliveries heading to the same dorm building or floor to maximize courier efficiency.',
-    revenueModel:
-      'Flat $1.50 platform facilitation fee per order, optional $15/semester CampusCart Pass for free unlimited deliveries, and promotional placement fees from local student-focused retail vendors.',
-    mvpFeatures: [
-      'Peer order-matching engine based on dorm building and floor numbers',
-      'Real-time order status notifications via SMS and lightweight web alerts',
-      'Verified student-only courier onboarding using university .edu email verification',
-      'Shared group cart enabling roommates to combine orders from the same merchant',
-      'Secure escrow payout system releasing courier funds upon dorm doorstep delivery confirmation',
-    ],
+export function Result({ idea: propIdea }) {
+  const location = useLocation();
+  const [copied, setCopied] = useState(false);
+
+  // Retrieve stored idea from location state or sessionStorage fallback
+  const getStoredIdea = () => {
+    try {
+      const stored = sessionStorage.getItem('ideaforge_current_idea');
+      return stored ? JSON.parse(stored) : null;
+    } catch {
+      return null;
+    }
   };
 
-  const startup = idea || defaultIdea;
+  const startup = propIdea || location.state?.idea || getStoredIdea() || defaultStartupIdea;
+
+  const handleCopy = async () => {
+    const text = formatIdeaForClipboard(startup);
+    try {
+      if (navigator?.clipboard?.writeText) {
+        await navigator.clipboard.writeText(text);
+      } else {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+      }
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Gracefully handle any clipboard permission rejections
+    }
+  };
 
   return (
     <Layout currentPath="/result">
@@ -66,18 +79,30 @@ export function Result({ idea }) {
               </p>
             </div>
 
-            {/* Quick Action Buttons (UI-Only) */}
+            {/* Quick Action Buttons */}
             <div className="flex items-center gap-2.5">
               <Button
-                variant="secondary"
+                variant={copied ? 'outline' : 'secondary'}
                 size="sm"
-                onClick={() => {}}
+                onClick={handleCopy}
                 className="flex items-center gap-1.5"
+                title="Copy structured concept to clipboard"
               >
-                <svg className="w-4 h-4 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                </svg>
-                Copy Idea
+                {copied ? (
+                  <>
+                    <svg className="w-4 h-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-blue-600 font-medium">Copied!</span>
+                  </>
+                ) : (
+                  <>
+                    <svg className="w-4 h-4 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                    <span>Copy Idea</span>
+                  </>
+                )}
               </Button>
               <Link to="/generate">
                 <Button variant="primary" size="sm" className="flex items-center gap-1.5">
@@ -219,13 +244,13 @@ export function Result({ idea }) {
                     </CardDescription>
                   </div>
                   <Badge variant="primary" size="sm">
-                    {startup.mvpFeatures.length} Core Modules
+                    {(startup.mvpFeatures || []).length} Core Modules
                   </Badge>
                 </div>
               </CardHeader>
               <CardContent className="p-6 sm:p-8">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {startup.mvpFeatures.map((feature, index) => (
+                  {(startup.mvpFeatures || []).map((feature, index) => (
                     <div
                       key={index}
                       className="p-4 rounded-xl bg-slate-50 border border-slate-200/80 flex items-start gap-3"
