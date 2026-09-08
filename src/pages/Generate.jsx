@@ -9,18 +9,22 @@ import { TextArea } from '../components/ui/TextArea';
 import { Select } from '../components/ui/Select';
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
-import { generateMockIdea } from '../utils';
+import {
+  generateStartupIdea,
+  extractSimpleField,
+  extractSimpleFeatures,
+} from '../services';
 
 /**
  * Generate Idea Page UI for IdeaForge AI
- * Phase 14: Connected frontend flow collecting:
+ * Phase 17: Connected Gemini generation flow collecting:
  * - Startup Interest
  * - Skills
  * - Budget
  * - Target Audience
  * - Startup Goal
  * 
- * Generates structured mock idea data and navigates to /result.
+ * Invokes Gemini service layer and passes generated startup idea to /result.
  * Follows the clean, light-mode educational design system.
  */
 export function Generate() {
@@ -32,6 +36,8 @@ export function Generate() {
     audience: '',
     goal: '',
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const budgetOptions = [
     { value: 'low', label: 'Zero / Minimal Budget ($0 - $100)' },
@@ -55,20 +61,62 @@ export function Generate() {
       audience: '',
       goal: '',
     });
+    setErrorMessage(null);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Phase 14: Generate mock startup idea from user inputs and navigate to /result
-    const mockIdea = generateMockIdea(formData);
+    setIsSubmitting(true);
+    setErrorMessage(null);
 
     try {
-      sessionStorage.setItem('ideaforge_current_idea', JSON.stringify(mockIdea));
-    } catch {
-      // Ignore sessionStorage errors (e.g. private browsing restrictions)
-    }
+      // Phase 17: Call Gemini service layer to generate startup idea
+      const generatedText = await generateStartupIdea(formData);
 
-    navigate('/result', { state: { idea: mockIdea } });
+      const parsedName = extractSimpleField(generatedText, 'Startup Name');
+      const parsedTagline = extractSimpleField(generatedText, 'Tagline');
+      const parsedProblem = extractSimpleField(generatedText, 'Problem');
+      const parsedSolution = extractSimpleField(generatedText, 'Solution');
+      const parsedAudience = extractSimpleField(generatedText, 'Target Audience');
+      const parsedBusinessModel = extractSimpleField(generatedText, 'Business Model');
+      const parsedRevenueModel = extractSimpleField(generatedText, 'Revenue Model');
+      const parsedMvpFeatures = extractSimpleFeatures(generatedText);
+
+      const resultIdea = {
+        rawText: generatedText,
+        name: parsedName || 'AI Startup Blueprint',
+        tagline: parsedTagline || 'Intelligent startup concept powered by Gemini AI',
+        description: parsedSolution || generatedText.slice(0, 350),
+        problem: parsedProblem || 'Core market friction defined in the generated concept blueprint.',
+        solution: parsedSolution || 'Product solution defined in the generated concept blueprint.',
+        targetAudience: parsedAudience || formData.audience || 'Target customer persona',
+        businessModel: parsedBusinessModel || 'Sustainable operational model detailed in concept.',
+        revenueModel: parsedRevenueModel || 'Monetization strategy detailed in concept.',
+        mvpFeatures:
+          parsedMvpFeatures.length > 0
+            ? parsedMvpFeatures
+            : [
+                'Core prototype workflow solving primary user pain point',
+                'Interactive user interface for audience onboarding',
+                'Backend logic and functional data processing module',
+                'Milestone analytics and progress tracking dashboard',
+              ],
+      };
+
+      try {
+        sessionStorage.setItem('ideaforge_current_idea', JSON.stringify(resultIdea));
+      } catch {
+        // Ignore sessionStorage errors (e.g. private browsing restrictions)
+      }
+
+      navigate('/result', { state: { idea: resultIdea } });
+    } catch (err) {
+      setErrorMessage(
+        err.message || 'Failed to generate startup idea. Please check your Gemini API key.'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -195,6 +243,21 @@ export function Generate() {
                   />
                 </FormGroup>
 
+                {/* Error Banner */}
+                {errorMessage && (
+                  <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-sm">
+                    <div className="flex items-start gap-2.5">
+                      <svg className="w-5 h-5 text-red-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <div>
+                        <p className="font-semibold text-red-900">Unable to Generate Startup Idea</p>
+                        <p className="text-xs sm:text-sm mt-0.5 text-red-700">{errorMessage}</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
                 {/* Form Action Controls */}
                 <div className="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
                   <div className="flex items-center gap-3 w-full sm:w-auto">
@@ -202,22 +265,35 @@ export function Generate() {
                       type="submit"
                       variant="primary"
                       size="lg"
+                      disabled={isSubmitting}
                       className="w-full sm:w-auto"
                     >
-                      Generate Startup Idea
-                      <svg
-                        className="w-4 h-4 ml-2"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M13 10V3L4 14h7v7l9-11h-7z"
-                        />
-                      </svg>
+                      {isSubmitting ? (
+                        <>
+                          <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
+                          </svg>
+                          Generating Concept...
+                        </>
+                      ) : (
+                        <>
+                          Generate Startup Idea
+                          <svg
+                            className="w-4 h-4 ml-2"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M13 10V3L4 14h7v7l9-11h-7z"
+                            />
+                          </svg>
+                        </>
+                      )}
                     </Button>
 
                     <Button

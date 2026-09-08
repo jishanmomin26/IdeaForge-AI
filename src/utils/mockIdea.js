@@ -140,14 +140,27 @@ export function generateMockIdea(formData = {}) {
 export function formatIdeaForClipboard(idea) {
   if (!idea) return '';
 
+  if (idea.rawText) {
+    return `========================================
+${(idea.name || 'AI Startup Concept').toUpperCase()}
+========================================
+Tagline: "${idea.tagline || ''}"
+
+${idea.rawText}
+
+========================================
+Generated with IdeaForge AI (Gemini API)
+========================================`;
+  }
+
   const featuresList = (idea.mvpFeatures || [])
     .map((feature, index) => `  ${index + 1}. ${feature}`)
     .join('\n');
 
   return `========================================
-${idea.name.toUpperCase()}
+${(idea.name || 'AI Startup Concept').toUpperCase()}
 ========================================
-Tagline: "${idea.tagline}"
+Tagline: "${idea.tagline || ''}"
 
 Description:
 ${idea.description}
