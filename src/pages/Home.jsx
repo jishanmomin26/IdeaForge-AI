@@ -24,7 +24,7 @@ export function Home() {
         <Container size="lg">
           <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
             {/* AI Pill Badge */}
-            <div className="mb-4">
+            <div className="mb-4 animate-fade-in">
               <Badge variant="purple" size="md" className="gap-1.5 shadow-xs">
                 <span className="text-purple-600 font-bold">✦</span>
                 Next-Gen Startup Ideation for Students
@@ -32,7 +32,7 @@ export function Home() {
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.15] mb-5 sm:mb-6">
+            <h1 className="animate-fade-up delay-75 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.15] mb-5 sm:mb-6">
               Turn Your Passions and Skills into{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700">
                 Actionable Startup Ideas
@@ -40,12 +40,12 @@ export function Home() {
             </h1>
 
             {/* Supporting Description */}
-            <p className="text-base sm:text-lg md:text-xl text-slate-600 leading-relaxed mb-7 sm:mb-9 max-w-2xl font-normal">
+            <p className="animate-fade-up delay-150 text-base sm:text-lg md:text-xl text-slate-600 leading-relaxed mb-7 sm:mb-9 max-w-2xl font-normal">
               IdeaForge AI helps aspiring student founders and creators transform raw skills, domain passions, and budget limits into comprehensive, defensible startup blueprints using Gemini AI.
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row items-center gap-3.5 w-full sm:w-auto">
+            <div className="animate-fade-up delay-200 flex flex-col sm:flex-row items-center gap-3.5 w-full sm:w-auto">
               <Link to="/generate" className="w-full sm:w-auto">
                 <Button variant="primary" size="lg" className="w-full sm:w-auto shadow-md shadow-blue-500/20">
                   Start Generating Ideas
@@ -62,8 +62,8 @@ export function Home() {
             </div>
 
             {/* Platform Metrics / Trust Highlights */}
-            <div className="mt-10 sm:mt-14 pt-8 border-t border-slate-200/80 grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-4 w-full text-slate-600">
-              <div className="bg-white p-4 rounded-xl border border-slate-200/80 shadow-xs flex items-center gap-3.5 text-left">
+            <div className="animate-fade-up delay-250 mt-10 sm:mt-14 pt-8 border-t border-slate-200/80 grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-4 w-full text-slate-600">
+              <div className="card-hover-lift bg-white p-4 rounded-xl border border-slate-200/80 shadow-xs flex items-center gap-3.5 text-left">
                 <div className="w-10 h-10 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center shrink-0 border border-sky-100">
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -75,7 +75,7 @@ export function Home() {
                 </div>
               </div>
 
-              <div className="bg-white p-4 rounded-xl border border-slate-200/80 shadow-xs flex items-center gap-3.5 text-left">
+              <div className="card-hover-lift bg-white p-4 rounded-xl border border-slate-200/80 shadow-xs flex items-center gap-3.5 text-left">
                 <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 border border-emerald-100">
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -87,7 +87,7 @@ export function Home() {
                 </div>
               </div>
 
-              <div className="bg-white p-4 rounded-xl border border-slate-200/80 shadow-xs flex items-center gap-3.5 text-left">
+              <div className="card-hover-lift bg-white p-4 rounded-xl border border-slate-200/80 shadow-xs flex items-center gap-3.5 text-left">
                 <div className="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center shrink-0 border border-purple-100">
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -102,7 +102,7 @@ export function Home() {
           </div>
 
           {/* Interactive Preview Mockup Card */}
-          <div className="mt-12 sm:mt-16 max-w-4xl mx-auto">
+          <div className="animate-fade-up delay-300 mt-12 sm:mt-16 max-w-4xl mx-auto">
             <Card className="border-slate-200/80 shadow-md shadow-slate-200/50 bg-white overflow-hidden">
               {/* Browser-style Header */}
               <div className="bg-slate-50/90 border-b border-slate-200/80 px-4 sm:px-6 py-3 flex items-center justify-between gap-2">
@@ -200,7 +200,7 @@ export function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Feature 1 - Sky Accent */}
-            <Card className="hover:border-sky-300 transition-all border-slate-200/80 shadow-xs">
+            <Card className="card-hover-lift hover:border-sky-300 border-slate-200/80 shadow-xs">
               <CardContent className="p-6 sm:p-7">
                 <div className="w-12 h-12 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center mb-5 border border-sky-100">
                   <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -220,7 +220,7 @@ export function Home() {
             </Card>
 
             {/* Feature 2 - Emerald Accent */}
-            <Card className="hover:border-emerald-300 transition-all border-slate-200/80 shadow-xs">
+            <Card className="card-hover-lift hover:border-emerald-300 border-slate-200/80 shadow-xs">
               <CardContent className="p-6 sm:p-7">
                 <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-5 border border-emerald-100">
                   <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -240,7 +240,7 @@ export function Home() {
             </Card>
 
             {/* Feature 3 - Amber Accent */}
-            <Card className="hover:border-amber-300 transition-all border-slate-200/80 shadow-xs">
+            <Card className="card-hover-lift hover:border-amber-300 border-slate-200/80 shadow-xs">
               <CardContent className="p-6 sm:p-7">
                 <div className="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mb-5 border border-amber-100">
                   <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -281,7 +281,7 @@ export function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
             {/* Step 1 - Sky Accent */}
-            <div className="bg-white p-6 sm:p-7 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col items-start relative hover:border-sky-200 transition-colors">
+            <div className="card-hover-lift bg-white p-6 sm:p-7 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col items-start relative hover:border-sky-200">
               <div className="w-9 h-9 rounded-xl bg-sky-600 text-white font-bold text-sm flex items-center justify-center mb-5 shadow-xs shadow-sky-500/20">
                 1
               </div>
@@ -294,7 +294,7 @@ export function Home() {
             </div>
 
             {/* Step 2 - Purple Accent */}
-            <div className="bg-white p-6 sm:p-7 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col items-start relative hover:border-purple-200 transition-colors">
+            <div className="card-hover-lift bg-white p-6 sm:p-7 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col items-start relative hover:border-purple-200">
               <div className="w-9 h-9 rounded-xl bg-purple-600 text-white font-bold text-sm flex items-center justify-center mb-5 shadow-xs shadow-purple-500/20">
                 2
               </div>
@@ -307,7 +307,7 @@ export function Home() {
             </div>
 
             {/* Step 3 - Emerald Accent */}
-            <div className="bg-white p-6 sm:p-7 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col items-start relative hover:border-emerald-200 transition-colors">
+            <div className="card-hover-lift bg-white p-6 sm:p-7 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col items-start relative hover:border-emerald-200">
               <div className="w-9 h-9 rounded-xl bg-emerald-600 text-white font-bold text-sm flex items-center justify-center mb-5 shadow-xs shadow-emerald-500/20">
                 3
               </div>

@@ -28,7 +28,7 @@ export function ErrorMessage({
   return (
     <div
       role="alert"
-      className={`p-4 sm:p-5 rounded-xl bg-red-50 border border-red-200 text-slate-800 shadow-sm ${className}`.trim()}
+      className={`animate-fade-up p-4 sm:p-5 rounded-xl bg-red-50 border border-red-200 text-slate-800 shadow-sm ${className}`.trim()}
     >
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex items-start gap-3">

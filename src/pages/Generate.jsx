@@ -181,7 +181,7 @@ export function Generate() {
       <div className="py-8 sm:py-14 bg-gradient-to-b from-blue-50/40 via-slate-50/20 to-white">
         <Container size="md">
           {/* Header */}
-          <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
+          <div className="animate-fade-in text-center max-w-2xl mx-auto mb-8 sm:mb-12">
             <div className="mb-3.5">
               <Badge variant="purple" size="md" className="shadow-xs">
                 Interactive Startup Generator
@@ -196,7 +196,7 @@ export function Generate() {
           </div>
 
           {/* Main Form Card */}
-          <Card className="shadow-md shadow-slate-200/50 border-slate-200/80 bg-white overflow-hidden">
+          <Card className="animate-fade-up delay-75 shadow-md shadow-slate-200/50 border-slate-200/80 bg-white overflow-hidden">
             <CardHeader className="bg-slate-50/80 border-b border-slate-200/80 px-5 sm:px-8 py-5">
               <div className="flex items-center justify-between gap-3 flex-wrap">
                 <div>
@@ -350,11 +350,12 @@ export function Generate() {
                 {isSubmitting && (
                   <div
                     role="status"
-                    className="p-5 sm:p-6 rounded-2xl bg-blue-50 border border-blue-200 text-slate-800 flex items-center gap-4 shadow-xs"
+                    className="animate-fade-in p-5 sm:p-6 rounded-2xl bg-blue-50 border border-blue-200 text-slate-800 flex items-center gap-4 shadow-xs"
                   >
                     <Spinner size="md" color="primary" className="shrink-0" />
                     <div>
-                      <p className="font-bold text-sm sm:text-base text-blue-950">
+                      <p className="font-bold text-sm sm:text-base text-blue-950 flex items-center">
+                        <span className="inline-block w-2 h-2 rounded-full bg-blue-600 animate-subtle-pulse mr-2" />
                         Generating your startup idea...
                       </p>
                       <p className="text-xs sm:text-sm text-slate-600 mt-0.5">
@@ -430,7 +431,7 @@ export function Generate() {
           </Card>
 
           {/* Helpful Tips Card */}
-          <div className="mt-8 bg-sky-50/60 border border-sky-100/90 rounded-2xl p-5 sm:p-6 text-slate-700 text-sm shadow-xs">
+          <div className="card-hover-lift mt-8 bg-sky-50/60 border border-sky-100/90 rounded-2xl p-5 sm:p-6 text-slate-700 text-sm shadow-xs">
             <h3 className="font-bold text-slate-900 mb-2.5 flex items-center gap-2">
               <svg className="w-5 h-5 text-sky-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />

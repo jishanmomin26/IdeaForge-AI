@@ -1,0 +1,213 @@
+/**
+ * IdeaForge AI — UI/UX Polish and Animation System
+ * Phase 21: Lightweight 60fps CSS animations & micro-interactions.
+ * Focuses exclusively on `opacity` and `transform` for maximum performance.
+ * Fully supports `prefers-reduced-motion: reduce` for accessibility.
+ */
+
+/* ==========================================================================
+   1. Keyframe Definitions
+   ========================================================================== */
+
+/* Page entrance: subtle fade and gentle 6px upward slide */
+@keyframes pageEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Element fade-up: smooth elevation entrance */
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Pure opacity fade-in */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Subtle breathing pulse for live AI badges/indicators */
+@keyframes subtlePulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.75;
+    transform: scale(0.96);
+  }
+}
+
+/* Soft mobile menu expansion */
+@keyframes menuSlideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   2. Animation Utility Classes
+   ========================================================================== */
+
+/* Global page entrance */
+.animate-page-enter {
+  animation: pageEnter 250ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: opacity, transform;
+}
+
+/* Staggered element entrance */
+.animate-fade-up {
+  animation: fadeUp 300ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: opacity, transform;
+}
+
+/* General fade-in */
+.animate-fade-in {
+  animation: fadeIn 250ms ease-out both;
+  will-change: opacity;
+}
+
+/* Subtle AI pulse */
+.animate-subtle-pulse {
+  animation: subtlePulse 2.5s ease-in-out infinite;
+}
+
+/* Mobile menu slide down */
+.animate-menu-slide {
+  animation: menuSlideDown 200ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ==========================================================================
+   3. Stagger Delay Utilities
+   ========================================================================== */
+
+.delay-50 {
+  animation-delay: 50ms;
+}
+
+.delay-75 {
+  animation-delay: 75ms;
+}
+
+.delay-100 {
+  animation-delay: 100ms;
+}
+
+.delay-150 {
+  animation-delay: 150ms;
+}
+
+.delay-200 {
+  animation-delay: 200ms;
+}
+
+.delay-250 {
+  animation-delay: 250ms;
+}
+
+.delay-300 {
+  animation-delay: 300ms;
+}
+
+.delay-350 {
+  animation-delay: 350ms;
+}
+
+.delay-400 {
+  animation-delay: 400ms;
+}
+
+.delay-500 {
+  animation-delay: 500ms;
+}
+
+/* ==========================================================================
+   4. Micro-Interaction Classes
+   ========================================================================== */
+
+/* Interactive card hover elevation */
+.card-hover-lift {
+  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 200ms cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+}
+
+/* Button micro-interaction utilities */
+.btn-micro-press {
+  transition: transform 150ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 150ms cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 150ms ease-out;
+}
+
+.btn-micro-press:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.btn-micro-press:active:not(:disabled) {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Form input smooth transition */
+.input-smooth-focus {
+  transition: border-color 180ms ease-out,
+              box-shadow 180ms ease-out,
+              background-color 180ms ease-out;
+}
+
+/* ==========================================================================
+   5. Accessibility: prefers-reduced-motion
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-page-enter,
+  .animate-fade-up,
+  .animate-fade-in,
+  .animate-subtle-pulse,
+  .animate-menu-slide {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .card-hover-lift:hover,
+  .btn-micro-press:hover:not(:disabled),
+  .btn-micro-press:active:not(:disabled) {
+    transform: none !important;
+  }
+}

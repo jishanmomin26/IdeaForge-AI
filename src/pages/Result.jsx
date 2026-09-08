@@ -64,7 +64,7 @@ export function Result({ idea: propIdea }) {
       <div className="py-8 sm:py-14 bg-gradient-to-b from-blue-50/40 via-slate-50/20 to-white">
         <Container size="lg">
           {/* Top Action / Status Bar */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 sm:mb-10 pb-6 border-b border-slate-200/80">
+          <div className="animate-fade-in flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 sm:mb-10 pb-6 border-b border-slate-200/80">
             <div>
               <div className="flex items-center gap-2 mb-2 flex-wrap">
                 <Badge variant="purple" size="md" className="gap-1.5 shadow-xs font-semibold">
@@ -118,7 +118,7 @@ export function Result({ idea: propIdea }) {
 
           <div className="space-y-8 sm:space-y-10">
             {/* 1. Header Card: Startup Name & High-Level Pitch */}
-            <Card className="border-slate-200/80 border-t-4 border-t-blue-600 shadow-md shadow-slate-200/50 bg-white overflow-hidden">
+            <Card className="animate-fade-up border-slate-200/80 border-t-4 border-t-blue-600 shadow-md shadow-slate-200/50 bg-white overflow-hidden">
               <CardContent className="p-6 sm:p-8 md:p-10">
                 <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
                   <div className="flex-1 min-w-0">
@@ -150,7 +150,7 @@ export function Result({ idea: propIdea }) {
             {/* 2. Problem vs Solution: Side-by-Side Comparison */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Problem Card (Amber Accent) */}
-              <Card className="border-slate-200/80 border-l-4 border-l-amber-500 shadow-xs bg-white overflow-hidden">
+              <Card className="animate-fade-up delay-100 card-hover-lift border-slate-200/80 border-l-4 border-l-amber-500 shadow-xs bg-white overflow-hidden">
                 <CardHeader className="bg-amber-50/30 border-b border-amber-100/60 p-5 sm:p-6">
                   <div className="flex items-center justify-between gap-2 mb-2">
                     <Badge variant="amber" size="sm">
@@ -175,7 +175,7 @@ export function Result({ idea: propIdea }) {
               </Card>
 
               {/* Solution Card (Blue Accent) */}
-              <Card className="border-slate-200/80 border-l-4 border-l-blue-600 shadow-xs bg-white overflow-hidden">
+              <Card className="animate-fade-up delay-150 card-hover-lift border-slate-200/80 border-l-4 border-l-blue-600 shadow-xs bg-white overflow-hidden">
                 <CardHeader className="bg-blue-50/30 border-b border-blue-100/60 p-5 sm:p-6">
                   <div className="flex items-center justify-between gap-2 mb-2">
                     <Badge variant="primary" size="sm">
@@ -203,7 +203,7 @@ export function Result({ idea: propIdea }) {
             {/* 3. Business Architecture: Target Audience, Business Model & Revenue */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {/* Target Audience (Sky Accent) */}
-              <Card className="border-slate-200/80 border-t-3 border-t-sky-500 shadow-xs bg-white overflow-hidden">
+              <Card className="animate-fade-up delay-200 card-hover-lift border-slate-200/80 border-t-3 border-t-sky-500 shadow-xs bg-white overflow-hidden">
                 <CardHeader className="bg-sky-50/20 border-b border-slate-100 p-5">
                   <div className="mb-2">
                     <Badge variant="sky" size="sm">
@@ -223,7 +223,7 @@ export function Result({ idea: propIdea }) {
               </Card>
 
               {/* Business Model (Purple Accent) */}
-              <Card className="border-slate-200/80 border-t-3 border-t-purple-600 shadow-xs bg-white overflow-hidden">
+              <Card className="animate-fade-up delay-250 card-hover-lift border-slate-200/80 border-t-3 border-t-purple-600 shadow-xs bg-white overflow-hidden">
                 <CardHeader className="bg-purple-50/20 border-b border-slate-100 p-5">
                   <div className="mb-2">
                     <Badge variant="purple" size="sm">
@@ -243,7 +243,7 @@ export function Result({ idea: propIdea }) {
               </Card>
 
               {/* Revenue Model (Emerald Accent) */}
-              <Card className="border-slate-200/80 border-t-3 border-t-emerald-600 shadow-xs bg-white overflow-hidden">
+              <Card className="animate-fade-up delay-300 card-hover-lift border-slate-200/80 border-t-3 border-t-emerald-600 shadow-xs bg-white overflow-hidden">
                 <CardHeader className="bg-emerald-50/20 border-b border-slate-100 p-5">
                   <div className="mb-2">
                     <Badge variant="emerald" size="sm">
@@ -264,7 +264,7 @@ export function Result({ idea: propIdea }) {
             </div>
 
             {/* 4. MVP Roadmap & Key Features */}
-            <Card className="border-slate-200/80 shadow-md shadow-slate-200/50 bg-white overflow-hidden">
+            <Card className="animate-fade-up delay-350 border-slate-200/80 shadow-md shadow-slate-200/50 bg-white overflow-hidden">
               <CardHeader className="bg-slate-50/80 border-b border-slate-200/80 p-5 sm:p-7">
                 <div className="flex items-center justify-between gap-3 flex-wrap">
                   <div>
@@ -286,7 +286,7 @@ export function Result({ idea: propIdea }) {
                     {startup.mvpFeatures.map((feature, index) => (
                       <div
                         key={index}
-                        className="p-4 sm:p-5 rounded-2xl bg-slate-50/70 border border-slate-200/80 hover:border-blue-200 transition-colors flex items-start gap-3.5 shadow-xs"
+                        className="card-hover-lift p-4 sm:p-5 rounded-2xl bg-slate-50/70 border border-slate-200/80 hover:border-blue-200 transition-colors flex items-start gap-3.5 shadow-xs"
                       >
                         <div className="w-7 h-7 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5 shadow-xs shadow-blue-500/20">
                           {index + 1}
@@ -306,7 +306,7 @@ export function Result({ idea: propIdea }) {
             </Card>
 
             {/* 5. Bottom Navigation & Action Bar */}
-            <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-blue-50/60 via-indigo-50/30 to-slate-50 border border-blue-100 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-5 text-center sm:text-left">
+            <div className="animate-fade-up delay-400 p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-blue-50/60 via-indigo-50/30 to-slate-50 border border-blue-100 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-5 text-center sm:text-left">
               <div>
                 <h3 className="font-bold text-slate-900 text-base sm:text-lg">
                   Want to refine this concept or try different parameters?

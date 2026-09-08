@@ -69,7 +69,7 @@ export function About() {
       <div className="py-8 sm:py-14 bg-gradient-to-b from-blue-50/40 via-slate-50/20 to-white">
         <Container size="lg">
           {/* Header Section */}
-          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+          <div className="animate-fade-in text-center max-w-3xl mx-auto mb-12 sm:mb-16">
             <div className="mb-3.5">
               <Badge variant="purple" size="md" className="gap-1.5 shadow-xs">
                 <span className="text-purple-600 font-bold">✦</span>
@@ -86,7 +86,7 @@ export function About() {
 
           <div className="space-y-10 sm:space-y-14">
             {/* 1. Project Mission & Objective */}
-            <Card className="border-slate-200/80 border-t-4 border-t-blue-600 shadow-md shadow-slate-200/50 bg-white overflow-hidden">
+            <Card className="animate-fade-up delay-75 border-slate-200/80 border-t-4 border-t-blue-600 shadow-md shadow-slate-200/50 bg-white overflow-hidden">
               <CardHeader className="bg-slate-50/80 border-b border-slate-200/80 p-5 sm:p-7">
                 <CardTitle as="h2" className="text-xl font-bold text-slate-900">
                   Project Mission & Problem Solved
@@ -121,7 +121,7 @@ export function About() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Inputs Card (Sky Accent) */}
-                <Card className="border-slate-200/80 border-t-3 border-t-sky-500 shadow-xs bg-white overflow-hidden">
+                <Card className="animate-fade-up delay-150 card-hover-lift border-slate-200/80 border-t-3 border-t-sky-500 shadow-xs bg-white overflow-hidden">
                   <CardHeader className="bg-sky-50/20 border-b border-slate-100 p-5 sm:p-6">
                     <div className="flex items-center justify-between">
                       <CardTitle as="h3" className="text-lg font-bold text-slate-900">
@@ -154,7 +154,7 @@ export function About() {
                 </Card>
 
                 {/* Outputs Card (Emerald Accent) */}
-                <Card className="border-slate-200/80 border-t-3 border-t-emerald-500 shadow-xs bg-white overflow-hidden">
+                <Card className="animate-fade-up delay-200 card-hover-lift border-slate-200/80 border-t-3 border-t-emerald-500 shadow-xs bg-white overflow-hidden">
                   <CardHeader className="bg-emerald-50/20 border-b border-slate-100 p-5 sm:p-6">
                     <div className="flex items-center justify-between">
                       <CardTitle as="h3" className="text-lg font-bold text-slate-900">
@@ -206,7 +206,7 @@ export function About() {
                 {techStack.map((tech, idx) => (
                   <Card
                     key={idx}
-                    className={`border-slate-200/80 border-l-4 ${tech.borderClass} shadow-xs bg-white transition-colors`}
+                    className={`animate-fade-up delay-250 card-hover-lift border-slate-200/80 border-l-4 ${tech.borderClass} shadow-xs bg-white`}
                   >
                     <CardContent className="p-6">
                       <div className="mb-2.5">
@@ -227,7 +227,7 @@ export function About() {
             </div>
 
             {/* 4. Academic Project Metadata */}
-            <Card className="border-slate-200/80 shadow-md shadow-slate-200/50 bg-white overflow-hidden">
+            <Card className="animate-fade-up delay-300 card-hover-lift border-slate-200/80 shadow-md shadow-slate-200/50 bg-white overflow-hidden">
               <CardHeader className="bg-slate-50/80 border-b border-slate-200/80 p-5 sm:p-7">
                 <div className="flex items-center justify-between">
                   <CardTitle as="h2" className="text-lg font-bold text-slate-900">
@@ -275,7 +275,7 @@ export function About() {
             </Card>
 
             {/* 5. Bottom CTA Card */}
-            <div className="bg-gradient-to-br from-blue-50 via-indigo-50/40 to-slate-50 border border-blue-100 rounded-3xl p-7 sm:p-12 text-center max-w-3xl mx-auto shadow-xs">
+            <div className="animate-fade-up delay-350 bg-gradient-to-br from-blue-50 via-indigo-50/40 to-slate-50 border border-blue-100 rounded-3xl p-7 sm:p-12 text-center max-w-3xl mx-auto shadow-xs">
               <div className="inline-block mb-3">
                 <Badge variant="purple" size="sm">Start Exploring</Badge>
               </div>

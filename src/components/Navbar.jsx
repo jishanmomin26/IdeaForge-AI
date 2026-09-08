@@ -95,7 +95,7 @@ export function Navbar() {
 
         {/* Mobile Dropdown Navigation */}
         {mobileMenuOpen && (
-          <div className="md:hidden py-3 border-t border-slate-100 flex flex-col gap-1.5">
+          <div className="animate-menu-slide md:hidden py-3 border-t border-slate-100 flex flex-col gap-1.5">
             {navItems.map((item) => (
               <NavLink
                 key={item.href}

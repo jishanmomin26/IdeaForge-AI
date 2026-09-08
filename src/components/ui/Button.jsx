@@ -24,17 +24,17 @@ export function Button({
   ...props
 }) {
   const baseStyles =
-    'inline-flex items-center justify-center font-medium transition-colors duration-150 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
+    'inline-flex items-center justify-center font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none cursor-pointer transition-all duration-150 ease-out active:scale-[0.98] active:translate-y-0';
 
   const variants = {
     primary:
-      'bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800 shadow-sm shadow-blue-500/20 focus:ring-blue-500',
+      'bg-blue-600 text-white hover:bg-blue-700 hover:-translate-y-0.5 hover:shadow-md hover:shadow-blue-500/25 active:bg-blue-800 shadow-sm shadow-blue-500/20 focus:ring-blue-500',
     secondary:
-      'bg-white text-blue-700 border border-slate-300 hover:bg-blue-50/60 hover:border-blue-300 shadow-xs focus:ring-blue-500',
+      'bg-white text-blue-700 border border-slate-300 hover:bg-blue-50/60 hover:border-blue-300 hover:-translate-y-0.5 hover:shadow-xs shadow-xs focus:ring-blue-500',
     outline:
-      'bg-transparent text-blue-600 border border-blue-600 hover:bg-blue-50 focus:ring-blue-500',
+      'bg-transparent text-blue-600 border border-blue-600 hover:bg-blue-50 hover:-translate-y-0.5 hover:shadow-xs focus:ring-blue-500',
     purple:
-      'bg-purple-600 text-white hover:bg-purple-700 active:bg-purple-800 shadow-sm shadow-purple-500/20 focus:ring-purple-500',
+      'bg-purple-600 text-white hover:bg-purple-700 hover:-translate-y-0.5 hover:shadow-md hover:shadow-purple-500/25 active:bg-purple-800 shadow-sm shadow-purple-500/20 focus:ring-purple-500',
     ghost:
       'bg-transparent text-slate-700 hover:bg-slate-100 hover:text-slate-900 focus:ring-slate-300',
   };

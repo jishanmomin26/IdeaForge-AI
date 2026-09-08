@@ -9,7 +9,7 @@
 export function Card({ children, className = '', ...props }) {
   return (
     <div
-      className={`bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden ${className}`.trim()}
+      className={`bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden transition-all duration-200 ease-out ${className}`.trim()}
       {...props}
     >
       {children}

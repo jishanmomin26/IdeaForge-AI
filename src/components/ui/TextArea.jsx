@@ -17,7 +17,7 @@ export function TextArea({
   ...props
 }) {
   const baseStyles =
-    'w-full px-3.5 py-2.5 bg-white text-slate-900 border rounded-lg text-sm shadow-xs transition-all duration-150 placeholder:text-slate-400 focus:outline-none disabled:bg-slate-100 disabled:text-slate-500 disabled:cursor-not-allowed resize-y';
+    'w-full px-3.5 py-2.5 bg-white text-slate-900 border rounded-lg text-sm shadow-xs transition-all duration-200 ease-out placeholder:text-slate-400 focus:outline-none disabled:bg-slate-100 disabled:text-slate-500 disabled:cursor-not-allowed resize-y';
 
   const stateStyles = error
     ? 'border-red-400 text-red-900 focus:border-red-500 focus:ring-4 focus:ring-red-500/15'
