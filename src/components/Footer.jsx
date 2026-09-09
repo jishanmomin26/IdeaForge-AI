@@ -39,7 +39,7 @@ export function Footer() {
           {/* Copyright */}
           <div>
             <p className="text-xs text-slate-400">
-              © {currentYear} IdeaForge AI. All rights reserved.
+              &copy; {currentYear} IdeaForge AI. All rights reserved.
             </p>
           </div>
         </div>

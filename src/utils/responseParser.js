@@ -58,12 +58,20 @@ const SECTION_DEFINITIONS = [
  */
 function cleanText(text) {
   if (!text || typeof text !== 'string') return '';
-  return text
-    .replace(/^[*_#~`\s:–—-]+/, '')
-    .replace(/[*_#~`\s]+$/, '')
-    .replace(/^["'“”]/, '')
-    .replace(/["'“”]$/, '')
-    .trim();
+  let cleaned = text.trim();
+
+  let prev;
+  do {
+    prev = cleaned;
+    cleaned = cleaned
+      .replace(/^[*_#~`\s:–—-]+/, '')
+      .replace(/[*_#~`\s]+$/, '')
+      .replace(/^["'“‘]/, '')
+      .replace(/["'”’]$/, '')
+      .trim();
+  } while (cleaned !== prev && cleaned.length > 0);
+
+  return cleaned;
 }
 
 /**
@@ -87,7 +95,9 @@ function parseMvpFeatures(rawFeaturesText) {
       .replace(/^(?:\[?\d+[.)\]]|\*|-|•)\s*/, '')
       .trim();
 
-    const cleaned = cleanText(withoutMarker);
+    // Strip inline markdown bold/italic markers like **Feature Name**: to keep UI clean and consistent
+    const normalized = withoutMarker.replace(/\*\*/g, '').replace(/__/g, '');
+    const cleaned = cleanText(normalized);
 
     // Ensure it's a substantive feature string, not just a standalone heading or punctuation
     if (cleaned.length > 2 && !/^features?:?$/i.test(cleaned)) {
@@ -119,17 +129,18 @@ function tryParseJson(text) {
     ) {
       const data = JSON.parse(stripped);
       if (data && typeof data === 'object' && !Array.isArray(data)) {
+        const startupName = cleanText((data.startupName || data.name || '').replace(/\*\*/g, ''));
         return {
-          startupName: cleanText(data.startupName || data.name || ''),
-          name: cleanText(data.startupName || data.name || ''),
-          tagline: cleanText(data.tagline || data.pitch || ''),
-          problem: cleanText(data.problem || data.problemStatement || ''),
-          solution: cleanText(data.solution || data.proposedSolution || ''),
-          targetAudience: cleanText(data.targetAudience || data.targetMarket || data.audience || ''),
-          businessModel: cleanText(data.businessModel || data.operationalModel || ''),
-          revenueModel: cleanText(data.revenueModel || data.monetization || ''),
+          startupName,
+          name: startupName,
+          tagline: cleanText((data.tagline || data.pitch || '').replace(/\*\*/g, '')),
+          problem: cleanText((data.problem || data.problemStatement || '').replace(/\*\*/g, '')),
+          solution: cleanText((data.solution || data.proposedSolution || '').replace(/\*\*/g, '')),
+          targetAudience: cleanText((data.targetAudience || data.targetMarket || data.audience || '').replace(/\*\*/g, '')),
+          businessModel: cleanText((data.businessModel || data.operationalModel || '').replace(/\*\*/g, '')),
+          revenueModel: cleanText((data.revenueModel || data.monetization || '').replace(/\*\*/g, '')),
           mvpFeatures: Array.isArray(data.mvpFeatures)
-            ? data.mvpFeatures.map(cleanText).filter(Boolean)
+            ? data.mvpFeatures.map((f) => cleanText(String(f)).replace(/\*\*/g, '')).filter(Boolean)
             : parseMvpFeatures(String(data.mvpFeatures || '')),
         };
       }
@@ -247,13 +258,13 @@ export function parseStartupIdea(rawResponse) {
   }
 
   // Clean and format individual fields
-  const startupName = cleanText(extractedSections.startupName || '');
-  const tagline = cleanText(extractedSections.tagline || '');
-  const problem = cleanText(extractedSections.problem || '');
-  const solution = cleanText(extractedSections.solution || '');
-  const targetAudience = cleanText(extractedSections.targetAudience || '');
-  const businessModel = cleanText(extractedSections.businessModel || '');
-  const revenueModel = cleanText(extractedSections.revenueModel || '');
+  const startupName = cleanText((extractedSections.startupName || '').replace(/\*\*/g, ''));
+  const tagline = cleanText((extractedSections.tagline || '').replace(/\*\*/g, ''));
+  const problem = cleanText((extractedSections.problem || '').replace(/\*\*/g, ''));
+  const solution = cleanText((extractedSections.solution || '').replace(/\*\*/g, ''));
+  const targetAudience = cleanText((extractedSections.targetAudience || '').replace(/\*\*/g, ''));
+  const businessModel = cleanText((extractedSections.businessModel || '').replace(/\*\*/g, ''));
+  const revenueModel = cleanText((extractedSections.revenueModel || '').replace(/\*\*/g, ''));
   const mvpFeatures = parseMvpFeatures(extractedSections.mvpFeatures || '');
 
   return {

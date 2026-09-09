@@ -26,7 +26,7 @@ export function Home() {
             {/* AI Pill Badge */}
             <div className="mb-4 animate-fade-in">
               <Badge variant="purple" size="md" className="gap-1.5 shadow-xs">
-                <span className="text-purple-600 font-bold">✦</span>
+                <svg className="w-3.5 h-3.5 text-purple-600 shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" /></svg>
                 Next-Gen Startup Ideation for Students
               </Badge>
             </div>

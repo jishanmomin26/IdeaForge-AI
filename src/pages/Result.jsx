@@ -68,7 +68,7 @@ export function Result({ idea: propIdea }) {
             <div>
               <div className="flex items-center gap-2 mb-2 flex-wrap">
                 <Badge variant="purple" size="md" className="gap-1.5 shadow-xs font-semibold">
-                  <span className="text-purple-600">✦</span>
+                  <svg className="w-3.5 h-3.5 text-purple-600 shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" /></svg>
                   AI-Generated Blueprint
                 </Badge>
                 <Badge variant="emerald" size="sm" className="font-semibold">
@@ -182,7 +182,7 @@ export function Result({ idea: propIdea }) {
                       Value Proposition
                     </Badge>
                     <div className="w-7 h-7 rounded-lg bg-blue-100/80 text-blue-700 flex items-center justify-center font-bold text-xs">
-                      ✓
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
                     </div>
                   </div>
                   <CardTitle as="h2" className="text-lg font-bold text-slate-900">

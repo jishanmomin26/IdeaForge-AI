@@ -72,8 +72,8 @@ export function About() {
           <div className="animate-fade-in text-center max-w-3xl mx-auto mb-12 sm:mb-16">
             <div className="mb-3.5">
               <Badge variant="purple" size="md" className="gap-1.5 shadow-xs">
-                <span className="text-purple-600 font-bold">✦</span>
-                College Mini Project • Generative AI
+                <svg className="w-3.5 h-3.5 text-purple-600 shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" /></svg>
+                College Mini Project &bull; Generative AI
               </Badge>
             </div>
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 mb-4">
