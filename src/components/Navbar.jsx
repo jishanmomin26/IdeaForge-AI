@@ -7,7 +7,7 @@ import { NavLink } from './NavLink';
 /**
  * Navbar component for IdeaForge AI
  * Features clean educational branding, primary links (Home, Generate, About),
- * and responsive mobile navigation powered by React Router.
+ * tactile CTA button, and responsive mobile navigation with smooth transitions.
  */
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -19,7 +19,7 @@ export function Navbar() {
   ];
 
   return (
-    <header className="bg-white/95 backdrop-blur-xs border-b border-slate-200/80 sticky top-0 z-50 shadow-xs">
+    <header className="bg-white/95 backdrop-blur-md border-b border-slate-200/80 sticky top-0 z-50 shadow-xs">
       <Container size="lg">
         <div className="flex items-center justify-between h-16">
           {/* Logo / Brand */}
@@ -27,7 +27,7 @@ export function Navbar() {
             to="/"
             className="group flex items-center gap-2.5 text-slate-900 transition-colors"
           >
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-700 flex items-center justify-center text-white font-black text-sm shadow-xs shadow-blue-500/20 group-hover:shadow-md group-hover:shadow-blue-500/25 transition-all">
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-700 flex items-center justify-center text-white font-black text-sm shadow-xs shadow-blue-500/20 group-hover:scale-105 group-hover:shadow-md group-hover:shadow-blue-500/30 transition-all duration-200">
               IF
             </div>
             <div className="flex flex-col">
@@ -38,7 +38,7 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-1.5" aria-label="Main Navigation">
+          <nav className="hidden md:flex items-center gap-2" aria-label="Main Navigation">
             {navItems.map((item) => (
               <NavLink
                 key={item.href}
@@ -52,7 +52,10 @@ export function Navbar() {
           {/* Desktop Action Button */}
           <div className="hidden md:flex items-center gap-3">
             <Link to="/generate">
-              <Button variant="primary" size="sm">
+              <Button variant="primary" size="sm" className="shadow-xs shadow-blue-500/20">
+                <svg className="w-3.5 h-3.5 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
                 Generate Idea
               </Button>
             </Link>
@@ -63,7 +66,7 @@ export function Navbar() {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500 min-w-[44px] min-h-[44px] flex items-center justify-center"
+              className="p-2.5 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500 min-w-[44px] min-h-[44px] flex items-center justify-center transition-colors"
               aria-label="Toggle navigation menu"
               aria-expanded={mobileMenuOpen}
             >
@@ -101,7 +104,7 @@ export function Navbar() {
                 key={item.href}
                 to={item.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full px-4 py-2.5 min-h-[44px] flex items-center text-sm font-medium rounded-lg"
+                className="w-full px-4 py-2.5 min-h-[44px] flex items-center text-sm font-medium rounded-xl"
               >
                 {item.label}
               </NavLink>
@@ -113,6 +116,9 @@ export function Navbar() {
                 onClick={() => setMobileMenuOpen(false)}
               >
                 <Button variant="primary" size="md" className="w-full min-h-[44px]">
+                  <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
                   Generate Idea
                 </Button>
               </Link>

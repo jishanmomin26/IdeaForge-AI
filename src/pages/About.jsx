@@ -7,14 +7,15 @@ import { Badge } from '../components/ui/Badge';
 
 /**
  * About Page for IdeaForge AI
- * Explains:
+ * Enhanced with interactive SaaS styling:
  * - What IdeaForge AI is and its academic purpose
  * - How Generative AI powers the ideation workflow
- * - Input parameters collected from users
- * - Structured startup outputs generated
- * - Core technology stack
+ * - 5 input parameters vs 5 structured outputs
+ * - Interactive technology stack cards with colored left borders
+ * - Academic project metadata
  * 
- * Follows the clean, professional, light-mode educational design system.
+ * Follows the 70/20/10 design system balance:
+ * 70% light surfaces, 20% purposeful accents, 10% micro-interactions.
  */
 export function About() {
   const inputs = [
@@ -39,41 +40,46 @@ export function About() {
       category: 'Generative AI Engine',
       desc: 'Powers the intelligence layer, transforming unstructured user parameters into a cohesive, logically consistent business blueprint.',
       variant: 'purple',
-      borderClass: 'border-l-purple-500 hover:border-purple-300',
+      borderClass: 'border-l-purple-500 hover:border-purple-400',
     },
     {
       title: 'React & Vite',
       category: 'Frontend Framework',
       desc: 'Provides a fast, modular, and reactive user interface built with modern JavaScript and component-driven architecture.',
       variant: 'primary',
-      borderClass: 'border-l-blue-600 hover:border-blue-300',
+      borderClass: 'border-l-blue-600 hover:border-blue-400',
     },
     {
       title: 'Tailwind CSS v4',
       category: 'Styling & Design System',
       desc: 'Powers the accessible, light-mode educational aesthetic featuring clean typography, consistent spacing, and multi-accent balance.',
       variant: 'sky',
-      borderClass: 'border-l-sky-500 hover:border-sky-300',
+      borderClass: 'border-l-sky-500 hover:border-sky-400',
     },
     {
       title: 'Frontend-Only Architecture',
       category: 'System Architecture',
       desc: 'Lightweight client-side model ensuring zero server bloat, fast load times, and straightforward hosting on modern platforms.',
       variant: 'emerald',
-      borderClass: 'border-l-emerald-500 hover:border-emerald-300',
+      borderClass: 'border-l-emerald-500 hover:border-emerald-400',
     },
   ];
 
   return (
     <Layout currentPath="/about">
-      <div className="py-8 sm:py-14 bg-gradient-to-b from-blue-50/40 via-slate-50/20 to-white">
+      <div className="relative overflow-hidden py-10 sm:py-16 bg-gradient-to-b from-blue-50/50 via-slate-50/30 to-white">
+        {/* Ambient Subtle Grid Pattern */}
+        <div aria-hidden="true" className="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none -z-10" />
+
         <Container size="lg">
           {/* Header Section */}
           <div className="animate-fade-in text-center max-w-3xl mx-auto mb-12 sm:mb-16">
             <div className="mb-3.5">
-              <Badge variant="purple" size="md" className="gap-1.5 shadow-xs">
-                <svg className="w-3.5 h-3.5 text-purple-600 shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" /></svg>
-                College Mini Project &bull; Generative AI
+              <Badge variant="purple" size="md" className="gap-2 shadow-xs py-1.5 px-3.5">
+                <svg className="w-3.5 h-3.5 text-purple-600 shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
+                </svg>
+                <span className="font-semibold text-purple-900">College Mini Project &bull; Generative AI</span>
               </Badge>
             </div>
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 mb-4">
@@ -86,7 +92,7 @@ export function About() {
 
           <div className="space-y-10 sm:space-y-14">
             {/* 1. Project Mission & Objective */}
-            <Card className="animate-fade-up delay-75 border-slate-200/80 border-t-4 border-t-blue-600 shadow-md shadow-slate-200/50 bg-white overflow-hidden">
+            <Card className="animate-fade-up delay-75 border-slate-200/90 border-t-4 border-t-blue-600 shadow-md shadow-slate-200/50 bg-white overflow-hidden">
               <CardHeader className="bg-slate-50/80 border-b border-slate-200/80 p-5 sm:p-7">
                 <CardTitle as="h2" className="text-xl font-bold text-slate-900">
                   Project Mission & Problem Solved
@@ -100,7 +106,7 @@ export function About() {
                   Aspiring entrepreneurs and students frequently experience brainstorming paralysis: they possess technical abilities and industry interests but struggle to synthesize them into viable business concepts with clear value propositions, market validation, and realistic monetization strategies.
                 </p>
                 <p>
-                  <strong className="text-slate-900 font-semibold">IdeaForge AI</strong> addresses this challenge by providing an AI-assisted brainstorming system. By feeding specific user constraints—such as programming skills, starting capital, and target audiences—into Generative AI, the platform delivers comprehensive, ready-to-prototype startup blueprints.
+                  <strong className="text-slate-900 font-semibold">IdeaForge AI</strong> addresses this challenge by providing an AI-assisted brainstorming system. By feeding specific user constraints &mdash; such as programming skills, starting capital, and target audiences &mdash; into Generative AI, the platform delivers comprehensive, ready-to-prototype startup blueprints.
                 </p>
               </CardContent>
             </Card>
@@ -121,8 +127,8 @@ export function About() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Inputs Card (Sky Accent) */}
-                <Card className="animate-fade-up delay-150 card-hover-lift border-slate-200/80 border-t-3 border-t-sky-500 shadow-xs bg-white overflow-hidden">
-                  <CardHeader className="bg-sky-50/20 border-b border-slate-100 p-5 sm:p-6">
+                <Card className="animate-fade-up delay-150 card-hover-lift border-slate-200/90 border-t-4 border-t-sky-500 shadow-xs bg-white overflow-hidden">
+                  <CardHeader className="bg-sky-50/25 border-b border-slate-100 p-5 sm:p-6">
                     <div className="flex items-center justify-between">
                       <CardTitle as="h3" className="text-lg font-bold text-slate-900">
                         1. User Inputs Provided
@@ -136,7 +142,7 @@ export function About() {
                     <ul className="space-y-4">
                       {inputs.map((item, idx) => (
                         <li key={idx} className="flex items-start gap-3.5 text-sm">
-                          <span className="w-6 h-6 rounded-lg bg-sky-50 text-sky-700 border border-sky-100 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
+                          <span className="w-6 h-6 rounded-lg bg-sky-50 text-sky-700 border border-sky-100 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
                             {idx + 1}
                           </span>
                           <div>
@@ -154,8 +160,8 @@ export function About() {
                 </Card>
 
                 {/* Outputs Card (Emerald Accent) */}
-                <Card className="animate-fade-up delay-200 card-hover-lift border-slate-200/80 border-t-3 border-t-emerald-500 shadow-xs bg-white overflow-hidden">
-                  <CardHeader className="bg-emerald-50/20 border-b border-slate-100 p-5 sm:p-6">
+                <Card className="animate-fade-up delay-200 card-hover-lift border-slate-200/90 border-t-4 border-t-emerald-500 shadow-xs bg-white overflow-hidden">
+                  <CardHeader className="bg-emerald-50/25 border-b border-slate-100 p-5 sm:p-6">
                     <div className="flex items-center justify-between">
                       <CardTitle as="h3" className="text-lg font-bold text-slate-900">
                         2. AI Blueprint Generated
@@ -169,8 +175,10 @@ export function About() {
                     <ul className="space-y-4">
                       {outputs.map((item, idx) => (
                         <li key={idx} className="flex items-start gap-3.5 text-sm">
-                          <span className="w-6 h-6 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-100 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
-                            ✓
+                          <span className="w-6 h-6 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-100 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
+                            <svg className="w-3.5 h-3.5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                            </svg>
                           </span>
                           <div>
                             <span className="font-bold text-slate-900 block leading-tight">
@@ -206,7 +214,7 @@ export function About() {
                 {techStack.map((tech, idx) => (
                   <Card
                     key={idx}
-                    className={`animate-fade-up delay-250 card-hover-lift border-slate-200/80 border-l-4 ${tech.borderClass} shadow-xs bg-white`}
+                    className={`animate-fade-up delay-250 card-hover-lift border-slate-200/90 border-l-4 ${tech.borderClass} shadow-xs bg-white`}
                   >
                     <CardContent className="p-6">
                       <div className="mb-2.5">
@@ -227,7 +235,7 @@ export function About() {
             </div>
 
             {/* 4. Academic Project Metadata */}
-            <Card className="animate-fade-up delay-300 card-hover-lift border-slate-200/80 shadow-md shadow-slate-200/50 bg-white overflow-hidden">
+            <Card className="animate-fade-up delay-300 card-hover-lift border-slate-200/90 shadow-md shadow-slate-200/50 bg-white overflow-hidden">
               <CardHeader className="bg-slate-50/80 border-b border-slate-200/80 p-5 sm:p-7">
                 <div className="flex items-center justify-between">
                   <CardTitle as="h2" className="text-lg font-bold text-slate-900">
@@ -275,7 +283,7 @@ export function About() {
             </Card>
 
             {/* 5. Bottom CTA Card */}
-            <div className="animate-fade-up delay-350 bg-gradient-to-br from-blue-50 via-indigo-50/40 to-slate-50 border border-blue-100 rounded-3xl p-7 sm:p-12 text-center max-w-3xl mx-auto shadow-xs">
+            <div className="animate-fade-up delay-350 bg-gradient-to-br from-blue-50 via-indigo-50/40 to-slate-50 border border-blue-100 rounded-3xl p-8 sm:p-12 text-center max-w-3xl mx-auto shadow-xs">
               <div className="inline-block mb-3">
                 <Badge variant="purple" size="sm">Start Exploring</Badge>
               </div>

@@ -2,8 +2,8 @@ import { NavLink as RouterNavLink } from 'react-router-dom';
 
 /**
  * NavLink component for IdeaForge AI
- * Integrates with React Router while maintaining existing design tokens.
- * Automatically computes active state for client-side navigation.
+ * Integrates with React Router while maintaining modern interactive tokens.
+ * Features an active pill indicator, subtle bottom accent line, and smooth hover state.
  */
 export function NavLink({
   to,
@@ -15,7 +15,7 @@ export function NavLink({
 }) {
   const target = to || href || '/';
   const baseStyles =
-    'inline-flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-150 ease-out';
+    'relative inline-flex items-center px-3.5 py-2 text-sm font-medium rounded-xl transition-all duration-150 ease-out cursor-pointer';
 
   return (
     <RouterNavLink
@@ -25,13 +25,23 @@ export function NavLink({
       className={({ isActive }) =>
         `${baseStyles} ${
           isActive
-            ? 'text-blue-700 bg-blue-50 font-semibold border border-blue-200/60 shadow-xs'
-            : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/80 border border-transparent'
+            ? 'text-blue-700 bg-blue-50/90 font-bold border border-blue-200/70 shadow-xs'
+            : 'text-slate-600 hover:text-blue-700 hover:bg-slate-100/70 border border-transparent'
         } ${className}`.trim()
       }
       {...props}
     >
-      {children}
+      {({ isActive }) => (
+        <>
+          {children}
+          {isActive && (
+            <span
+              className="absolute bottom-1 left-3.5 right-3.5 h-0.5 rounded-full bg-blue-600 animate-fade-in"
+              aria-hidden="true"
+            />
+          )}
+        </>
+      )}
     </RouterNavLink>
   );
 }

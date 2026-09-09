@@ -1,15 +1,15 @@
 /**
  * Card component and modular subcomponents for IdeaForge AI
- * Follows the light-mode clean card specification:
- * - White background (#FFFFFF)
- * - Subtle slate border (#E2E8F0)
- * - Rounded corners (rounded-xl)
- * - Very subtle shadow (shadow-sm)
+ * Clean light-mode card specification with refined borders and elevation:
+ * - Crisp surface background (#FFFFFF)
+ * - Soft slate border (#E2E8F0)
+ * - Modern rounded corners (rounded-2xl)
+ * - Tactile micro-interactions and smooth transitions
  */
 export function Card({ children, className = '', ...props }) {
   return (
     <div
-      className={`bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden transition-all duration-200 ease-out ${className}`.trim()}
+      className={`bg-white border border-slate-200/80 rounded-2xl shadow-xs overflow-hidden transition-all duration-200 ease-out ${className}`.trim()}
       {...props}
     >
       {children}
@@ -20,7 +20,7 @@ export function Card({ children, className = '', ...props }) {
 export function CardHeader({ children, className = '', ...props }) {
   return (
     <div
-      className={`p-4 sm:p-6 border-b border-slate-100 ${className}`.trim()}
+      className={`p-5 sm:p-6 border-b border-slate-100 ${className}`.trim()}
       {...props}
     >
       {children}
@@ -36,7 +36,7 @@ export function CardTitle({
 }) {
   return (
     <Component
-      className={`text-lg font-semibold text-slate-900 ${className}`.trim()}
+      className={`text-lg font-bold text-slate-900 tracking-tight ${className}`.trim()}
       {...props}
     >
       {children}
@@ -47,7 +47,7 @@ export function CardTitle({
 export function CardDescription({ children, className = '', ...props }) {
   return (
     <p
-      className={`mt-1 text-sm text-slate-500 ${className}`.trim()}
+      className={`mt-1 text-sm text-slate-500 font-normal ${className}`.trim()}
       {...props}
     >
       {children}
@@ -57,7 +57,7 @@ export function CardDescription({ children, className = '', ...props }) {
 
 export function CardContent({ children, className = '', ...props }) {
   return (
-    <div className={`p-4 sm:p-6 ${className}`.trim()} {...props}>
+    <div className={`p-5 sm:p-6 ${className}`.trim()} {...props}>
       {children}
     </div>
   );
@@ -66,7 +66,7 @@ export function CardContent({ children, className = '', ...props }) {
 export function CardFooter({ children, className = '', ...props }) {
   return (
     <div
-      className={`p-4 sm:p-6 bg-slate-50/50 border-t border-slate-100 flex items-center ${className}`.trim()}
+      className={`p-5 sm:p-6 bg-slate-50/60 border-t border-slate-100 flex items-center ${className}`.trim()}
       {...props}
     >
       {children}

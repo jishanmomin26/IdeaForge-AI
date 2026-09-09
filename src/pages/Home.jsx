@@ -7,27 +7,71 @@ import { Card, CardContent } from '../components/ui/Card';
 
 /**
  * Home / Landing Page for IdeaForge AI
- * Communicates the core mission of AI-assisted startup ideation for students and entrepreneurs.
- * Follows the clean, professional, light-mode educational design system.
+ * Enhanced with modern interactive SaaS aesthetics:
+ * - Subtle background grid & ambient pastel glow
+ * - Tactile floating idea badges
+ * - Rich highlight metric cards with colored icon containers
+ * - Interactive browser preview mockup
+ * - 4-point structured feature cards with purposeful accent borders
+ * - Bottom CTA banner with layered depth
+ * 
+ * Follows the 70 / 20 / 10 design balance formula:
+ * 70% light surfaces, 20% purposeful accents, 10% micro-interactions.
  */
 export function Home() {
   return (
     <Layout currentPath="/">
-      {/* 1. Hero Section with Ambient Glow & Modern Hierarchy */}
-      <section className="relative overflow-hidden pt-8 pb-12 sm:pt-16 sm:pb-20 border-b border-slate-200/60 bg-gradient-to-b from-blue-50/50 via-slate-50/30 to-white">
-        {/* Soft Ambient Radial Blur Accent */}
+      {/* 1. Hero Section with Ambient Glow & Modern Depth */}
+      <section className="relative overflow-hidden pt-10 pb-16 sm:pt-20 sm:pb-24 border-b border-slate-200/70 bg-gradient-to-b from-blue-50/50 via-slate-50/30 to-white">
+        {/* Subtle Background Dot Grid Pattern */}
         <div
           aria-hidden="true"
-          className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-72 bg-gradient-to-r from-blue-200/25 via-indigo-200/20 to-purple-200/25 blur-3xl pointer-events-none -z-10"
+          className="absolute inset-0 bg-grid-pattern opacity-50 pointer-events-none -z-10"
         />
+
+        {/* Soft Ambient Radial Blur Accents */}
+        <div
+          aria-hidden="true"
+          className="absolute top-0 left-1/3 -translate-x-1/2 w-96 h-96 bg-blue-200/25 rounded-full blur-3xl pointer-events-none -z-10"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute top-8 right-1/4 translate-x-1/2 w-96 h-96 bg-purple-200/20 rounded-full blur-3xl pointer-events-none -z-10"
+        />
+
+        {/* Floating Idea Elements for Visual Interest (Non-intrusive) */}
+        <div
+          aria-hidden="true"
+          className="hidden lg:flex items-center gap-2.5 px-3.5 py-2 rounded-full bg-white/95 border border-amber-200/80 shadow-sm text-xs font-semibold text-slate-700 animate-float-slow absolute left-6 xl:left-14 top-28 select-none"
+        >
+          <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
+          <span className="text-amber-700 font-bold">Concept:</span>
+          <span>Campus Peer Courier</span>
+        </div>
+
+        <div
+          aria-hidden="true"
+          className="hidden lg:flex items-center gap-2.5 px-3.5 py-2 rounded-full bg-white/95 border border-emerald-200/80 shadow-sm text-xs font-semibold text-slate-700 animate-float-delayed absolute right-6 xl:right-14 top-32 select-none"
+        >
+          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          <span className="text-emerald-700 font-bold">Model:</span>
+          <span>Freemium Student SaaS</span>
+        </div>
 
         <Container size="lg">
           <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
             {/* AI Pill Badge */}
-            <div className="mb-4 animate-fade-in">
-              <Badge variant="purple" size="md" className="gap-1.5 shadow-xs">
-                <svg className="w-3.5 h-3.5 text-purple-600 shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" /></svg>
-                Next-Gen Startup Ideation for Students
+            <div className="mb-5 animate-fade-in">
+              <Badge variant="purple" size="md" className="gap-2 shadow-xs py-1.5 px-3.5">
+                <svg
+                  className="w-3.5 h-3.5 text-purple-600 shrink-0"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
+                </svg>
+                <span className="font-semibold text-purple-900">Next-Gen Startup Ideation for Students</span>
               </Badge>
             </div>
 
@@ -40,7 +84,7 @@ export function Home() {
             </h1>
 
             {/* Supporting Description */}
-            <p className="animate-fade-up delay-150 text-base sm:text-lg md:text-xl text-slate-600 leading-relaxed mb-7 sm:mb-9 max-w-2xl font-normal">
+            <p className="animate-fade-up delay-150 text-base sm:text-lg md:text-xl text-slate-600 leading-relaxed mb-8 sm:mb-10 max-w-2xl font-normal">
               IdeaForge AI helps aspiring student founders and creators transform raw skills, domain passions, and budget limits into comprehensive, defensible startup blueprints using Gemini AI.
             </p>
 
@@ -48,8 +92,8 @@ export function Home() {
             <div className="animate-fade-up delay-200 flex flex-col sm:flex-row items-center gap-3.5 w-full sm:w-auto">
               <Link to="/generate" className="w-full sm:w-auto">
                 <Button variant="primary" size="lg" className="w-full sm:w-auto shadow-md shadow-blue-500/20">
-                  Start Generating Ideas
-                  <svg className="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <span>Start Generating Ideas</span>
+                  <svg className="w-4 h-4 ml-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>
                 </Button>
@@ -62,9 +106,9 @@ export function Home() {
             </div>
 
             {/* Platform Metrics / Trust Highlights */}
-            <div className="animate-fade-up delay-250 mt-10 sm:mt-14 pt-8 border-t border-slate-200/80 grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-4 w-full text-slate-600">
-              <div className="card-hover-lift bg-white p-4 rounded-xl border border-slate-200/80 shadow-xs flex items-center gap-3.5 text-left">
-                <div className="w-10 h-10 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center shrink-0 border border-sky-100">
+            <div className="animate-fade-up delay-250 mt-12 sm:mt-16 pt-8 border-t border-slate-200/80 grid grid-cols-1 sm:grid-cols-3 gap-4 w-full text-slate-600">
+              <div className="card-hover-lift bg-white p-4.5 rounded-2xl border border-slate-200/80 shadow-xs flex items-center gap-3.5 text-left">
+                <div className="w-11 h-11 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center shrink-0 border border-sky-100 card-icon-hover shadow-2xs">
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
@@ -75,8 +119,8 @@ export function Home() {
                 </div>
               </div>
 
-              <div className="card-hover-lift bg-white p-4 rounded-xl border border-slate-200/80 shadow-xs flex items-center gap-3.5 text-left">
-                <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 border border-emerald-100">
+              <div className="card-hover-lift bg-white p-4.5 rounded-2xl border border-slate-200/80 shadow-xs flex items-center gap-3.5 text-left">
+                <div className="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 border border-emerald-100 card-icon-hover shadow-2xs">
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                   </svg>
@@ -87,8 +131,8 @@ export function Home() {
                 </div>
               </div>
 
-              <div className="card-hover-lift bg-white p-4 rounded-xl border border-slate-200/80 shadow-xs flex items-center gap-3.5 text-left">
-                <div className="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center shrink-0 border border-purple-100">
+              <div className="card-hover-lift bg-white p-4.5 rounded-2xl border border-slate-200/80 shadow-xs flex items-center gap-3.5 text-left">
+                <div className="w-11 h-11 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center shrink-0 border border-purple-100 card-icon-hover shadow-2xs">
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
@@ -102,10 +146,10 @@ export function Home() {
           </div>
 
           {/* Interactive Preview Mockup Card */}
-          <div className="animate-fade-up delay-300 mt-12 sm:mt-16 max-w-4xl mx-auto">
-            <Card className="border-slate-200/80 shadow-md shadow-slate-200/50 bg-white overflow-hidden">
+          <div className="animate-fade-up delay-300 mt-14 sm:mt-18 max-w-4xl mx-auto">
+            <Card className="card-hover-lift border-slate-200/90 shadow-md shadow-slate-200/60 bg-white overflow-hidden">
               {/* Browser-style Header */}
-              <div className="bg-slate-50/90 border-b border-slate-200/80 px-4 sm:px-6 py-3 flex items-center justify-between gap-2">
+              <div className="bg-slate-50/95 border-b border-slate-200/80 px-4 sm:px-6 py-3.5 flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2 min-w-0">
                   <div className="flex items-center gap-1.5 shrink-0">
                     <div className="w-3 h-3 rounded-full bg-rose-400" />
@@ -129,11 +173,11 @@ export function Home() {
                 </div>
               </div>
 
-              <CardContent className="p-5 sm:p-7 md:p-8 space-y-6">
+              <CardContent className="p-6 sm:p-8 space-y-6">
                 <div>
                   <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
                     <div className="flex items-center gap-3">
-                      <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 text-white font-bold flex items-center justify-center text-sm shadow-xs">
+                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 text-white font-bold flex items-center justify-center text-sm shadow-xs">
                         S
                       </div>
                       <div>
@@ -154,7 +198,7 @@ export function Home() {
                   </p>
                 </div>
 
-                {/* 3 Structured Preview Cells with Colored Accent Borders */}
+                {/* 3 Structured Preview Cells with Purposeful Accent Borders */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-4 pt-4 border-t border-slate-100 text-xs">
                   <div className="bg-sky-50/50 p-4 rounded-xl border border-sky-100 border-l-4 border-l-sky-500">
                     <span className="font-bold text-sky-900 block mb-1 uppercase tracking-wider text-[11px]">
@@ -182,12 +226,12 @@ export function Home() {
       </section>
 
       {/* 2. Feature / Value Section */}
-      <section className="py-14 sm:py-20 bg-white border-b border-slate-200/70">
+      <section className="py-16 sm:py-24 bg-white border-b border-slate-200/70">
         <Container size="lg">
           <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
             <div className="mb-3">
               <Badge variant="secondary" size="sm">
-                Built for College Mini Projects
+                Built for Student Innovators
               </Badge>
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight mb-3.5">
@@ -198,153 +242,116 @@ export function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Feature 1 - Sky Accent */}
-            <Card className="card-hover-lift hover:border-sky-300 border-slate-200/80 shadow-xs">
-              <CardContent className="p-6 sm:p-7">
-                <div className="w-12 h-12 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center mb-5 border border-sky-100">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Card 1: Problem Discovery (Amber Accent) */}
+            <div className="card-hover-lift bg-white p-6 sm:p-7 rounded-2xl border border-slate-200/80 border-t-4 border-t-amber-500 shadow-xs flex flex-col justify-between">
+              <div>
+                <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 border border-amber-100 flex items-center justify-center mb-5 card-icon-hover shadow-2xs">
                   <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                   </svg>
                 </div>
-                <div className="mb-2">
-                  <Badge variant="sky" size="sm">Personalized</Badge>
-                </div>
-                <h3 className="text-lg font-bold text-slate-900 mb-2.5">
-                  Personalized to Your Profile
-                </h3>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  Inputs consider your real programming skills, interests, financial budget, and target audience rather than producing generic, copy-paste ideas.
+                <h3 className="font-bold text-slate-900 text-lg mb-2">Problem Validation</h3>
+                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                  Pinpoint validated frictions and genuine customer pain points rather than building solutions in search of problems.
                 </p>
-              </CardContent>
-            </Card>
+              </div>
+              <div className="mt-5 pt-3 border-t border-slate-100">
+                <span className="text-amber-700 font-semibold text-xs flex items-center gap-1">
+                  Market Friction Focused
+                </span>
+              </div>
+            </div>
 
-            {/* Feature 2 - Emerald Accent */}
-            <Card className="card-hover-lift hover:border-emerald-300 border-slate-200/80 shadow-xs">
-              <CardContent className="p-6 sm:p-7">
-                <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-5 border border-emerald-100">
+            {/* Card 2: Skill & Budget Feasibility (Sky Accent) */}
+            <div className="card-hover-lift bg-white p-6 sm:p-7 rounded-2xl border border-slate-200/80 border-t-4 border-t-sky-500 shadow-xs flex flex-col justify-between">
+              <div>
+                <div className="w-12 h-12 rounded-2xl bg-sky-50 text-sky-600 border border-sky-100 flex items-center justify-center mb-5 card-icon-hover shadow-2xs">
                   <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                   </svg>
                 </div>
-                <div className="mb-2">
-                  <Badge variant="emerald" size="sm">Defensible</Badge>
-                </div>
-                <h3 className="text-lg font-bold text-slate-900 mb-2.5">
-                  Complete Venture Architecture
-                </h3>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  Generates full concept breakdowns including problem validation, market solution, business model, revenue model, and a 5-point MVP feature roadmap.
+                <h3 className="font-bold text-slate-900 text-lg mb-2">Skill Alignment</h3>
+                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                  Directly leverages your existing technical abilities (React, Python, Design) and realistic student budget limits.
                 </p>
-              </CardContent>
-            </Card>
+              </div>
+              <div className="mt-5 pt-3 border-t border-slate-100">
+                <span className="text-sky-700 font-semibold text-xs flex items-center gap-1">
+                  Feasible Architecture
+                </span>
+              </div>
+            </div>
 
-            {/* Feature 3 - Amber Accent */}
-            <Card className="card-hover-lift hover:border-amber-300 border-slate-200/80 shadow-xs">
-              <CardContent className="p-6 sm:p-7">
-                <div className="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mb-5 border border-amber-100">
+            {/* Card 3: Monetization & Business (Emerald Accent) */}
+            <div className="card-hover-lift bg-white p-6 sm:p-7 rounded-2xl border border-slate-200/80 border-t-4 border-t-emerald-500 shadow-xs flex flex-col justify-between">
+              <div>
+                <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 border border-emerald-100 flex items-center justify-center mb-5 card-icon-hover shadow-2xs">
                   <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
-                <div className="mb-2">
-                  <Badge variant="amber" size="sm">Realistic</Badge>
-                </div>
-                <h3 className="text-lg font-bold text-slate-900 mb-2.5">
-                  Student & Hackathon Ready
-                </h3>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  Tailored for college students, capstone teams, and hackathon participants looking for realistic, actionable, and exhibition-ready concepts.
+                <h3 className="font-bold text-slate-900 text-lg mb-2">Sustainable Models</h3>
+                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                  Clear monetization strategies suited for lean startups: student freemium tiers, campus licensing, and low-cost micro-transactions.
                 </p>
-              </CardContent>
-            </Card>
+              </div>
+              <div className="mt-5 pt-3 border-t border-slate-100">
+                <span className="text-emerald-700 font-semibold text-xs flex items-center gap-1">
+                  Realistic Cash Flow
+                </span>
+              </div>
+            </div>
+
+            {/* Card 4: Actionable MVP Roadmap (Purple Accent) */}
+            <div className="card-hover-lift bg-white p-6 sm:p-7 rounded-2xl border border-slate-200/80 border-t-4 border-t-purple-500 shadow-xs flex flex-col justify-between">
+              <div>
+                <div className="w-12 h-12 rounded-2xl bg-purple-50 text-purple-600 border border-purple-100 flex items-center justify-center mb-5 card-icon-hover shadow-2xs">
+                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                  </svg>
+                </div>
+                <h3 className="font-bold text-slate-900 text-lg mb-2">MVP Roadmap</h3>
+                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                  Receive a concrete 5-point feature checklist ready to build for your exhibition, hackathon, or early customer testing.
+                </p>
+              </div>
+              <div className="mt-5 pt-3 border-t border-slate-100">
+                <span className="text-purple-700 font-semibold text-xs flex items-center gap-1">
+                  Ready to Prototype
+                </span>
+              </div>
+            </div>
           </div>
         </Container>
       </section>
 
-      {/* 3. How It Works Section */}
-      <section className="py-14 sm:py-20 bg-slate-50/50">
+      {/* 3. Bottom Call-To-Action Banner */}
+      <section className="py-16 sm:py-20 bg-slate-50/60">
         <Container size="lg">
-          <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
-            <div className="mb-3">
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-50 via-indigo-50/40 to-slate-50 border border-blue-100 p-8 sm:p-12 text-center shadow-xs">
+            <div aria-hidden="true" className="absolute top-0 right-0 w-80 h-80 bg-blue-200/20 rounded-full blur-3xl pointer-events-none -z-10" />
+            <div className="max-w-2xl mx-auto space-y-4">
               <Badge variant="primary" size="sm">
-                Simple 3-Step Process
-              </Badge>
-            </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight mb-3.5">
-              How It Works
-            </h2>
-            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-              A straightforward workflow designed to take you from initial curiosity to a structured proposal in under a minute.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
-            {/* Step 1 - Sky Accent */}
-            <div className="card-hover-lift bg-white p-6 sm:p-7 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col items-start relative hover:border-sky-200">
-              <div className="w-9 h-9 rounded-xl bg-sky-600 text-white font-bold text-sm flex items-center justify-center mb-5 shadow-xs shadow-sky-500/20">
-                1
-              </div>
-              <h3 className="text-lg font-bold text-slate-900 mb-2">
-                Specify Your Profile
-              </h3>
-              <p className="text-sm text-slate-600 leading-relaxed">
-                Provide your domain interests, technical skills, available budget tier, target customer persona, and primary startup goal.
-              </p>
-            </div>
-
-            {/* Step 2 - Purple Accent */}
-            <div className="card-hover-lift bg-white p-6 sm:p-7 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col items-start relative hover:border-purple-200">
-              <div className="w-9 h-9 rounded-xl bg-purple-600 text-white font-bold text-sm flex items-center justify-center mb-5 shadow-xs shadow-purple-500/20">
-                2
-              </div>
-              <h3 className="text-lg font-bold text-slate-900 mb-2">
-                Gemini AI Synthesis
-              </h3>
-              <p className="text-sm text-slate-600 leading-relaxed">
-                The Gemini model synthesizes current market opportunities with your individual constraints to formulate a feasible venture architecture.
-              </p>
-            </div>
-
-            {/* Step 3 - Emerald Accent */}
-            <div className="card-hover-lift bg-white p-6 sm:p-7 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col items-start relative hover:border-emerald-200">
-              <div className="w-9 h-9 rounded-xl bg-emerald-600 text-white font-bold text-sm flex items-center justify-center mb-5 shadow-xs shadow-emerald-500/20">
-                3
-              </div>
-              <h3 className="text-lg font-bold text-slate-900 mb-2">
-                Actionable Blueprint
-              </h3>
-              <p className="text-sm text-slate-600 leading-relaxed">
-                Receive an executive breakdown containing startup name, pitch, market friction, value proposition, revenue model, and MVP roadmap.
-              </p>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* 4. Bottom CTA Section */}
-      <section className="py-12 sm:py-16 bg-white">
-        <Container size="lg">
-          <div className="bg-gradient-to-br from-blue-50 via-indigo-50/40 to-slate-50 border border-blue-100/80 rounded-3xl p-7 sm:p-12 text-center max-w-4xl mx-auto shadow-xs">
-            <div className="inline-block mb-3">
-              <Badge variant="purple" size="sm">
                 Get Started in Seconds
               </Badge>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
+                Ready to Forge Your Startup Concept?
+              </h2>
+              <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+                Enter your interests, technical background, and budget limits to generate a comprehensive AI blueprint with Gemini.
+              </p>
+              <div className="pt-3">
+                <Link to="/generate">
+                  <Button variant="primary" size="lg" className="shadow-md shadow-blue-500/20">
+                    Launch Idea Generator
+                    <svg className="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </Button>
+                </Link>
+              </div>
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
-              Ready to Explore Your Next Startup Concept?
-            </h2>
-            <p className="text-slate-600 text-sm sm:text-base max-w-xl mx-auto mb-7 leading-relaxed">
-              Input your technical skills and domain interests. Generate a customized startup blueprint tailored to your capabilities.
-            </p>
-            <Link to="/generate" className="w-full sm:w-auto inline-block">
-              <Button variant="primary" size="lg" className="w-full sm:w-auto shadow-md shadow-blue-500/20">
-                Generate Your First Idea
-                <svg className="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </Button>
-            </Link>
           </div>
         </Container>
       </section>

@@ -85,15 +85,12 @@ function getFriendlyErrorMessage(error) {
 
 /**
  * Generate Idea Page UI for IdeaForge AI
- * Phase 19: Loading States and Error Handling:
- * - Collects Startup Interests, Skills, Budget, Audience, Goal
- * - Displays animated Spinner & status during Gemini generation
- * - Disables all form inputs and button to prevent double-submissions
- * - Catches errors, logs details via console.error, and renders user-friendly ErrorMessage
- * - Provides interactive "Try Again" retry action with preserved form inputs
- * - Parses structured idea and navigates to /result upon success
- * 
- * Follows the clean, light-mode educational design system.
+ * Enhanced with interactive SaaS form layout:
+ * - Structured step containers with purposeful accent highlights
+ * - Crisp input focus and hover states
+ * - Animated loading indicator & double-submit prevention
+ * - Friendly error handling with retry callback
+ * - Preserves all form state & Gemini integration logic
  */
 export function Generate() {
   const navigate = useNavigate();
@@ -143,7 +140,7 @@ export function Generate() {
       // Call Gemini service layer to generate raw response
       const rawResponse = await generateStartupIdea(formData);
 
-      // Phase 18: Parse raw Gemini response into consistent structured object
+      // Parse raw Gemini response into consistent structured object
       const structuredIdea = parseStartupIdea(rawResponse);
 
       // Validate response content
@@ -178,66 +175,76 @@ export function Generate() {
 
   return (
     <Layout currentPath="/generate">
-      <div className="py-8 sm:py-14 bg-gradient-to-b from-blue-50/40 via-slate-50/20 to-white">
+      <div className="relative overflow-hidden py-10 sm:py-16 bg-gradient-to-b from-blue-50/50 via-slate-50/30 to-white">
+        {/* Subtle Ambient Grid Background */}
+        <div aria-hidden="true" className="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none -z-10" />
+        <div aria-hidden="true" className="absolute top-0 right-1/4 w-96 h-96 bg-blue-100/30 rounded-full blur-3xl pointer-events-none -z-10" />
+
         <Container size="md">
-          {/* Header */}
+          {/* Header Section */}
           <div className="animate-fade-in text-center max-w-2xl mx-auto mb-8 sm:mb-12">
             <div className="mb-3.5">
-              <Badge variant="purple" size="md" className="shadow-xs">
-                Interactive Startup Generator
+              <Badge variant="purple" size="md" className="gap-2 shadow-xs py-1.5 px-3.5">
+                <svg className="w-3.5 h-3.5 text-purple-600 shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
+                </svg>
+                <span className="font-semibold text-purple-900">Guided Ideation Workflow</span>
               </Badge>
             </div>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 mb-3.5">
-              Configure Your Startup Concept
+              Generate Your{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700">
+                Startup Blueprint
+              </span>
             </h1>
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
-              Enter your domain interests, technical skills, budget limits, and entrepreneurial goals below. IdeaForge AI will synthesize these parameters into an actionable startup concept.
+            <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
+              Provide your technical skills, domain interests, and budget constraints. IdeaForge AI uses Gemini to synthesize a complete business model and MVP roadmap.
             </p>
           </div>
 
-          {/* Main Form Card */}
-          <Card className="animate-fade-up delay-75 shadow-md shadow-slate-200/50 border-slate-200/80 bg-white overflow-hidden">
-            <CardHeader className="bg-slate-50/80 border-b border-slate-200/80 px-5 sm:px-8 py-5">
-              <div className="flex items-center justify-between gap-3 flex-wrap">
+          {/* Generator Form Card */}
+          <Card className="animate-fade-up border-slate-200/90 shadow-md shadow-slate-200/50 bg-white overflow-hidden">
+            <CardHeader className="bg-slate-50/80 border-b border-slate-100 p-5 sm:p-7">
+              <div className="flex items-center justify-between gap-3">
                 <div>
                   <CardTitle as="h2" className="text-xl font-bold text-slate-900">
-                    Startup Parameters
+                    Startup Parameters Form
                   </CardTitle>
                   <CardDescription className="text-xs sm:text-sm mt-0.5">
-                    All 5 fields help Gemini AI tailor a feasible, customized, and defensible business blueprint.
+                    All parameters are tailored to generate a viable, realistic venture concept.
                   </CardDescription>
                 </div>
-                <Badge variant="secondary" size="sm">
-                  5 Input Dimensions
+                <Badge variant="primary" size="sm" className="hidden sm:inline-flex font-semibold">
+                  3 Simple Steps
                 </Badge>
               </div>
             </CardHeader>
 
-            <CardContent className="p-5 sm:p-8 space-y-8">
+            <CardContent className="p-6 sm:p-8 md:p-10">
               <form onSubmit={handleSubmit} className="space-y-8">
-                {/* SECTION 1: Problem Space & Passions (Amber Accent) */}
-                <div className="p-5 sm:p-6 rounded-2xl bg-amber-50/30 border border-amber-200/60 space-y-4">
+                {/* STEP 1: Startup Interests (Amber Accent) */}
+                <div className="p-5 sm:p-6 rounded-2xl bg-amber-50/25 border border-amber-200/70 space-y-4 transition-colors">
                   <div className="flex items-center gap-2.5 pb-2 border-b border-amber-100">
-                    <Badge variant="amber" size="sm">
+                    <Badge variant="amber" size="sm" className="font-bold">
                       Step 1
                     </Badge>
                     <h3 className="font-bold text-slate-900 text-base">
-                      Problem Space & Passions
+                      Startup Interests & Domain Focus
                     </h3>
                   </div>
 
                   <FormGroup
-                    label="Startup Interests & Industry Domain"
+                    label="Startup Interests & Industry"
                     htmlFor="interests"
                     required
-                    helperText="Specify the industries or problem spaces that excite you (e.g. EdTech, HealthTech, Sustainable Energy, B2B Productivity, AI Tools)."
+                    helperText="Specify industries, technologies, or domain problems you want to explore (e.g. HealthTech, EdTech, Micro-SaaS)."
                   >
                     <TextArea
                       id="interests"
                       name="interests"
                       value={formData.interests}
                       onChange={handleChange('interests')}
-                      placeholder="e.g. Higher education tools, campus food delivery logistics, smart timetable automation..."
+                      placeholder="e.g. AI-powered fitness apps, sustainable food logistics, university student productivity..."
                       rows={3}
                       disabled={isSubmitting}
                       required
@@ -245,14 +252,14 @@ export function Generate() {
                   </FormGroup>
                 </div>
 
-                {/* SECTION 2: Technical & Domain Skills (Purple Accent) */}
-                <div className="p-5 sm:p-6 rounded-2xl bg-purple-50/30 border border-purple-200/60 space-y-4">
+                {/* STEP 2: Skills & Capabilities (Purple Accent) */}
+                <div className="p-5 sm:p-6 rounded-2xl bg-purple-50/25 border border-purple-200/70 space-y-4 transition-colors">
                   <div className="flex items-center gap-2.5 pb-2 border-b border-purple-100">
-                    <Badge variant="purple" size="sm">
+                    <Badge variant="purple" size="sm" className="font-bold">
                       Step 2
                     </Badge>
                     <h3 className="font-bold text-slate-900 text-base">
-                      Technical & Domain Capabilities
+                      Skills & Technical Capabilities
                     </h3>
                   </div>
 
@@ -260,14 +267,14 @@ export function Generate() {
                     label="Skills & Capabilities"
                     htmlFor="skills"
                     required
-                    helperText="List programming languages, frameworks, domain expertise, or business strengths you or your team possess."
+                    helperText="Programming languages, design tools, or business expertise available for building the MVP."
                   >
                     <TextArea
                       id="skills"
                       name="skills"
                       value={formData.skills}
                       onChange={handleChange('skills')}
-                      placeholder="e.g. React, JavaScript, Python, REST APIs, UI/UX design, data analysis..."
+                      placeholder="e.g. React, Node.js, Python, UI/UX Design, Growth Marketing..."
                       rows={3}
                       disabled={isSubmitting}
                       required
@@ -275,10 +282,10 @@ export function Generate() {
                   </FormGroup>
                 </div>
 
-                {/* SECTION 3: Feasibility Constraints & Venture Goal (Sky & Emerald Accent) */}
-                <div className="p-5 sm:p-6 rounded-2xl bg-sky-50/30 border border-sky-200/60 space-y-6">
+                {/* STEP 3: Constraints & Venture Goal (Sky Accent) */}
+                <div className="p-5 sm:p-6 rounded-2xl bg-sky-50/25 border border-sky-200/70 space-y-6 transition-colors">
                   <div className="flex items-center gap-2.5 pb-2 border-b border-sky-100">
-                    <Badge variant="sky" size="sm">
+                    <Badge variant="sky" size="sm" className="font-bold">
                       Step 3
                     </Badge>
                     <h3 className="font-bold text-slate-900 text-base">
@@ -350,7 +357,7 @@ export function Generate() {
                 {isSubmitting && (
                   <div
                     role="status"
-                    className="animate-fade-in p-5 sm:p-6 rounded-2xl bg-blue-50 border border-blue-200 text-slate-800 flex items-center gap-4 shadow-xs"
+                    className="animate-fade-in p-5 sm:p-6 rounded-2xl bg-blue-50/90 border border-blue-200 text-slate-800 flex items-center gap-4 shadow-xs"
                   >
                     <Spinner size="md" color="primary" className="shrink-0" />
                     <div>
@@ -377,7 +384,7 @@ export function Generate() {
 
                 {/* Form Action Controls */}
                 <div className="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
-                  <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+                  <div className="flex flex-col sm:flex-row items-center gap-3.5 w-full sm:w-auto">
                     <Button
                       type="submit"
                       variant="primary"
@@ -388,11 +395,11 @@ export function Generate() {
                       {isSubmitting ? (
                         <>
                           <Spinner size="sm" color="white" className="-ml-1 mr-2" />
-                          Generating your startup idea...
+                          Generating idea...
                         </>
                       ) : (
                         <>
-                          Generate Startup Idea
+                          <span>Generate Startup Idea</span>
                           <svg
                             className="w-4 h-4 ml-2"
                             fill="none"
@@ -418,12 +425,12 @@ export function Generate() {
                       onClick={handleReset}
                       className="w-full sm:w-auto"
                     >
-                      Reset
+                      Reset Form
                     </Button>
                   </div>
 
                   <p className="text-xs text-slate-400 text-center sm:text-right">
-                    Generates a structured business model, problem statement, and MVP roadmap.
+                    Generates structured business model, problem statement, and MVP roadmap.
                   </p>
                 </div>
               </form>
@@ -431,7 +438,7 @@ export function Generate() {
           </Card>
 
           {/* Helpful Tips Card */}
-          <div className="card-hover-lift mt-8 bg-sky-50/60 border border-sky-100/90 rounded-2xl p-5 sm:p-6 text-slate-700 text-sm shadow-xs">
+          <div className="card-hover-lift mt-8 bg-sky-50/60 border border-sky-200/80 rounded-2xl p-5 sm:p-6 text-slate-700 text-sm shadow-xs">
             <h3 className="font-bold text-slate-900 mb-2.5 flex items-center gap-2">
               <svg className="w-5 h-5 text-sky-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
